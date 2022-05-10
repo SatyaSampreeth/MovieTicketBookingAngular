@@ -1,3 +1,4 @@
+import { Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
@@ -8,6 +9,51 @@ import { User } from './userInterface';
   providedIn: 'root'
 })
 export class AuthService {
+
+private isLoggedIn:boolean=false
+
+public getisLoggedin(){
+  return this.isLoggedIn
+}
+public setisLoggedin(value:any){
+  this.isLoggedIn=value
+}
+
+private role:any='guest'
+public setRole(value:string){
+  this.role=value
+}
+public getRole(){
+  return this.role
+}
+private userId=localStorage.getItem('id')
+public isAdmin(){
+  // console.log(this.getRole())
+    if(this.getRole()==='admin'){
+      // console.log('in if')
+      return true
+    }
+    else{
+      return false
+    }
+}
+public getUserId(){
+  return this.userId
+}
+
+getToken(){
+  return localStorage.getItem('token')
+}
+
+ private selected!:any
+
+ public getSelected(){
+   return this.selected
+ }
+ public setSelected(value:any){
+   this.selected=value
+ }
+
   // private title!: string;
   // public get_title(): string {
   //   return this.title;
@@ -28,6 +74,13 @@ export class AuthService {
   }
   public set_title(value: string) {
     this.title = value;
+  }
+  private showId!:string;
+  public get_showId(): string {
+    return this.showId;
+  }
+  public set_showId(value: string) {
+    this.showId = value;
   }
   // private _email!: string;
   // public get email(): string {
@@ -52,7 +105,7 @@ export class AuthService {
   // }
   private url:string="http://localhost:9000"
   details!:any 
-  constructor(private http:HttpClient,private router:Router) { }
+  constructor(private http:HttpClient,private router:Router) {}
   getUsers():Observable<User>{
     return this.http.get<User>(this.url);
   }
@@ -69,8 +122,25 @@ export class AuthService {
     return this.http.get<any>(this.url+'/movie/'+city)
   }
 
+  getCinemasbyLocMov(city:string,title:string){
+    return this.http.get<any>(this.url+'/cinema/'+city+'/'+title)
+  }
+
+  getShowsbyLocMovCin(city:string,title:string,name:string){
+    return this.http.get<any>(this.url+'/showtime/'+city+'/'+title+'/'+name)
+  }
+
   getShowbyId(id:string){
     return this.http.get<any>(this.url+'/showtime/'+id)
+  }
+
+  book(id:string,seats:any){
+    const obj={
+      id:id,
+      seats:seats
+    }
+    return this.http.post(this.url+'/showtime/book', obj)
+    // http://localhost:9000/showtime/book
   }
 
   loginUser(email:string,password:string){
@@ -79,17 +149,28 @@ export class AuthService {
       password: password
     };
     // let result:boolean = false
-    return this.http.post(this.url+'/login',obj).subscribe({
-      next: (res) => {
-        console.log(res)
-        alert("logged in")
-        this.router.navigateByUrl('book')
-      },
-      error: (err) => { console.log(err) 
-      alert("invalid details")} 
-    })
+    return this.http.post(this.url+'/login',obj)
+    // .subscribe({
+    //   next: (res) => {
+    //     console.log(res)
+    //     // if(res ){
+    //     //   localStorage.setItem('token' , res.token)
+    //     //   console.log("Response from API is  " , res)
+    //     //   this.router.navigate(['/dashboard']);
+  
+    //     // }
+    //     alert("logged in")
+    //     this.router.navigateByUrl('/movie/book')
+    //   },
+    //   error: (err) => { console.log(err) 
+    //   alert("invalid details")} 
+    // })
     // console.log(obj)
   }
+
+  // isLoggedIn():any{
+  //   return this.getisLoggedin()
+  // }
 
   signupUser(fname:string,lname:string,email:string,password:string){
     const obj ={
@@ -102,7 +183,7 @@ export class AuthService {
       next: (res) => {
         console.log(res)
         alert("registered")
-        this.router.navigate(['book'])
+        this.router.navigate(['/user/login'])
       },
       error: (err) => { console.log(err) 
         alert("invalid details")}

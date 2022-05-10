@@ -1,0 +1,61 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    }
+    nav{
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        min-height: 8vh;
+        background-color: black;
+        /* background-color: #c60021; */
+        /* font-family: Georgia, "Times New Roman", Times, serif; */
+        font-weight: 600;
+      /* font-size: x-large; */
+      font-size: 18px;
+
+    }
+    .logo a{
+        color: gold;
+        /* color: rgba(203, 199, 63, 0.76); */
+        /* text-transform: uppercase; */
+        letter-spacing: 3px;
+        
+        text-decoration: none;
+        margin-left:0px;
+        padding-left:0px;
+        /* font-size: 20px; */
+    }
+
+    .nav-links{
+        display: flex;
+        justify-content: space-around;
+        width: 40%;
+        
+        
+    }
+    /* button{
+        
+    } */
+    
+    .nav-links li{
+        list-style: none;
+    }
+    .nav-links a,button{
+        color: gold;
+        /* color: #fa255e; */
+        text-decoration: none;
+        /* letter-spacing: 0.1px;
+        font-weight:40;
+        font-size: 15px;
+        transition: all 0.3s ease 0s;
+         */
+    
+    }
+    
+    .nav-links li a:hover, button:hover{
+        color: #fa255e;
+        /* color:rgba(206, 200, 19, 0.76); */
+    }
+    

@@ -1,6 +1,7 @@
 import { AuthService } from 'src/app/auth.service';
 import { CommonService } from 'src/app/common.service';
 import { Component, OnInit } from '@angular/core';
+// import { faSackDollar, faBusAlt, faMoneyCheckAlt, faHeadset } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-admin',
@@ -8,6 +9,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./admin.component.css']
 })
 export class AdminComponent implements OnInit {
+
+
+  // lowPriceIcon = faSackDollar;
+  // busIcon = faBusAlt;
+  // dealsIcon = faMoneyCheckAlt;
+  // supportIcon = faHeadset;
+
 
   movieList:any=[]
   locationList:any=[]

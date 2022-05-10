@@ -1,0 +1,59 @@
+.container-fluid {
+    width: 100%;
+}
+
+table {
+    border: 1px solid;
+    margin: auto;
+    width: 80% !important;
+    height: 70% !important;
+    text-align: center;
+}
+
+.seat-select {
+    cursor: pointer;
+    background: white;
+    /* background: rgb(244, 241, 241); */
+    border-radius: 3px;
+    margin: 10px;
+    padding: 10px;
+    text-align: center;
+    color: grey;
+}
+
+.seat-select:hover{
+    background: gray;
+}
+
+.seat-selected {
+    cursor: pointer;
+    background: rgb(74, 158, 74);
+    color: white;
+    border-radius: 3px;
+    margin: 10px;
+    padding: 10px;
+    text-align: center;
+}
+
+.seat-disabled {
+    /* cursor: not-allowed; */
+    pointer-events: none;
+    background: brown;
+    color: white;
+    border-radius: 3px;
+    margin: 10px;
+    padding: 10px;
+    text-align: center;
+}
+
+#submitButton {
+    display: block;
+    margin: auto;
+    margin-top: 5px;
+    font-size: 21px;
+}
+
+td{
+    display: inline-flex;
+
+}

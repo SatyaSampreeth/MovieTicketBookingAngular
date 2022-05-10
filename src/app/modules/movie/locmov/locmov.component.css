@@ -1,0 +1,73 @@
+.wrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: fit-content;
+    flex-direction: column;
+    padding: 30px;
+  }
+  button{
+  background: reverse;
+  color: black;
+  padding: 10px 15px;
+  font-size: 15px;
+  width: 150px;
+  text-align: center;
+  margin:0 25px;
+  
+  }
+  button:disabled{
+  background: gray;
+  color:black;
+  }
+
+
+.block{
+    width: 320px;
+    padding: 5px;
+    border: 1px solid gray;
+    background: black;
+    height: fit-content;
+  }
+  h1{
+    margin: 0px;
+    padding: 12px;
+  }
+  form{
+  width: 95%;
+  /* margin: 5px; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  }
+  label{
+      /* visibility: hidden; */
+      color: #fa255e;
+  }
+  h3{
+  color: gold;
+  font-weight: 600;
+  /* font-family: sans-serif; */
+  /* flex-direction: column; */
+  text-align: center;
+  }
+      .inp{
+        padding: 10px 10px;
+        margin: 6px;
+        width: 80%;
+       
+      }
+      .btns{
+        padding: 10px;
+          /* display: flex; */
+          width: 60%;
+      }
+      .forgot{
+        padding: 10px;
+      }
+
+/* .com{
+  display: flex;
+  text-align:;
+} */

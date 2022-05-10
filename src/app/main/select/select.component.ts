@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/auth.service';
 
 @Component({
@@ -9,7 +10,7 @@ import { AuthService } from 'src/app/auth.service';
 })
 export class SelectComponent implements OnInit {
 
-  constructor(private auth:AuthService,private formBuilder: FormBuilder) { }
+  constructor(private auth:AuthService,private formBuilder: FormBuilder, private router:Router) { }
 
   form:any = FormGroup;
   result:any=[]
@@ -27,16 +28,18 @@ export class SelectComponent implements OnInit {
   
   submit(){
     let id:string=this.form.value.show
-    this.auth.getShowbyId(id)
-    .subscribe({
-          next: (res) => {
-            console.log('success',res)
-            // alert("detail")
-            // this.router.navigate(['book'])
-          },
-          error: (err) => { console.log(err) 
-            alert("invalid details")}
-        })
+    this.auth.set_showId(this.form.value.show)
+    this.router.navigateByUrl('/seats');
+    // this.auth.getShowbyId(id)
+    // .subscribe({
+    //       next: (res) => {
+    //         console.log('success',res)
+    //         // alert("detail")
+    //         // this.router.navigate(['book'])
+    //       },
+    //       error: (err) => { console.log(err) 
+    //         alert("invalid details")}
+    //     })
     console.log(this.form.value);
   }
 
@@ -58,7 +61,7 @@ export class SelectComponent implements OnInit {
               this.showIdList.push(item.id)
             }
             this.result=res
-            console.log('success',this.result,this.showIdList)
+            // console.log('success',this.result,this.showIdList)
             // alert("detail")
             // this.router.navigate(['book'])
           },

@@ -1,14 +1,15 @@
-/* You can add global styles to this file, and also import other style files */
-/* You can add global styles to this file, and also import other style files */
-.wrapper{
+*{
+    margin: 0;
+}
+/* .wrapper{
     display: flex;
     justify-content: center;
     align-items: center;
     height: fit-content;
     flex-direction: column;
     padding: 30px;
-}
-nav{
+} */
+/* nav{
     background-color: cadetblue;;
     width: 600px;
     padding: 10px;
@@ -17,14 +18,15 @@ nav{
 nav a{
     margin: 5px;
     color: black;
-}
+} */
 body{
-    background-color: bisque;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    /* background-color: bisque; */
+    background-color:  #e6e9f0;
+    /* display: flex; */
+    /* flex-direction: column;
+    align-items: center; */
 }
-button{
+/* button{
     background: reverse;
     color: black;
     padding: 10px 15px;
@@ -33,8 +35,8 @@ button{
     text-align: center;
     margin:0 25px;
 
-}
-.block{
+} */
+/* .block{
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -48,4 +50,4 @@ button{
 button:disabled{
     background: gray;
     color:black;
-}
+} */
