@@ -17,7 +17,7 @@ export class NavbarComponent implements OnInit {
     localStorage.removeItem('id')
     localStorage.removeItem('role')
     this.auth.setisLoggedin(false)
-    this.router.navigate(['/login'])
+    this.router.navigate([''])
   }
   ngOnInit(): void {
   }

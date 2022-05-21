@@ -1,57 +1,302 @@
-<p>locmov works!</p>
+<!-- <h3 style="align-items: center;">Book Tickets</h3> -->
 <!-- <h1>book works!</h1> -->
-<div class="wrapper">
-    
-    
-    <div class="block">
-        <!-- <h1>Movie Booking Application</h1> -->
-        <h3>Book Tickets</h3>
-        <form [formGroup]="bookForm" (ngSubmit)="show()">
-           <!-- <div class="com"> -->
-               <label for="location">Location</label>  
-            <select id="location" formControlName="location" class="inp" (change)='onChangeLocation()' >  
+<!-- <form class="form-inline" action="/action_page.php">
+    <label for="email">Email:</label>
+    <input type="email" id="email" placeholder="Enter email" name="email">
+            <label for="location">Location</label>  
+                <select id="location" formControlName="location" class="inp" (change)='onChangeLocation()' >  
                 <option disabled>Select Location</option>  
                 <option>Choose Location</option>  
                 <option *ngFor="let loc of locationList">{{loc}}</option>  
             </select>  
-        <!-- </div> -->
+    <label for="pwd">Password:</label>
+    <input type="password" id="pwd" placeholder="Enter password" name="pswd">
+    <input type="password" id="pwd1" placeholder="Enter password" name="pswd">
+    <input type="password" id="pwd2" placeholder="Enter password" name="pswd">
+    <label>
+      <input type="checkbox" name="remember"> Remember me
+    </label>
+    <button type="submit">Submit</button>
+  </form> -->
+
+
+
+<div class="wrapper">
+    <div class="block">
+        <!-- <h1>Movie Booking Application</h1> -->
+        <!-- <h3>Book Tickets</h3> -->
+        <!-- (ngSubmit)="show()"  -->
+        <form [formGroup]="bookForm" class="form-inline">
+           <div class="com">
+               <label for="location">Location</label>  
+                <select id="location" formControlName="location" class="inp" (change)='onChangeLocation()' >  
+                <option disabled>Select Location</option>  
+                <option>Choose Location</option>  
+                <option *ngFor="let loc of locationList">{{loc}}</option>  
+            </select>  
+            </div>
+
+            <div class="com">
+                <label for="movie">Movie</label>  
+                <select id="movie" formControlName="movie" class="inp" (change)='onChangeMovie()'>  
+                    <option disabled>Select Movie</option>  
+                    <option>Choose Movie</option>  
+                    <option *ngFor="let mov of movieList">{{mov}}</option>  
+                </select>
+            </div>
            
+            <div class="com">
+                <label for="cinema">Theatre</label>  
+                <select id="cinema" formControlName="cinema" class="inp" (change)='onChangeCinema()'>  
+                    <option disabled>Select Theatre</option>  
+                    <option>Choose Theatre</option>  
+                    <option *ngFor="let cin of cinemaList">{{cin}}</option>  
+                </select>
+            </div>
 
-            <label for="movie">Movie</label>  
-            <select id="movie" formControlName="movie" class="inp" (change)='onChangeMovie()'>  
-                <option disabled>Select Movie</option>  
-                <option>Choose Movie</option>  
-                <option *ngFor="let mov of movieList">{{mov}}</option>  
-            </select>
-
-            <label for="cinema">Theatre</label>  
-            <select id="cinema" formControlName="cinema" class="inp" (change)='onChangeCinema()'>  
-                <option disabled>Select Theatre</option>  
-                <option>Choose Theatre</option>  
-                <option *ngFor="let cin of cinemaList">{{cin}}</option>  
-            </select>
-
-            <label for="show">Show</label>  
-            <select id="show" formControlName="show" class="inp">  
-                <option disabled>Select Show</option>  
-                <!-- <option>Choose Show</option>   -->
-                <option *ngFor="let sh of showList" value={{sh.id}}>{{sh.showtime}}</option>  
-            </select>
-            <!-- <h1>List</h1> -->
-            <!-- <ul *ngFor="let list of result">
-
-            <li>Theatre: {{ list.cinema }}
-            Show: {{ list.showtime }}
-            <button [routerLink]="/select" [queryParams]="{cinemaId:list.cinemaId,showId:list._id}">Book</button>
-        </li>
-            </ul> -->
-            <!-- <p>{{result}}</p> -->
-           <div class="btns">
+            <div class="com">
+                <label for="show">Show</label>  
+                <select id="show" formControlName="show" class="inp" (change)='onChangeShow()'>  
+                    <option disabled>Select Show</option>  
+                    <!-- <option>Choose Show</option>   -->
+                    <option *ngFor="let sh of showList" value={{sh.id}}>{{sh.showtime}}</option>  
+                </select>
+            </div>
+           <!-- <div class="btns com">
            <button [disabled]="!bookForm.valid" >Show Seats</button>
-           <!-- <button (click)="goToRegister()">SIGN UP</button> -->
-           </div>
-           <!-- <a href="" class="forgot">Forgot Password</a> -->
+           </div> -->
        </form>
-
     </div>
 </div>
+<!-- <div >
+    <div class="img" *ngIf="movieImg.length>0">
+        <div  class="cont" *ngFor="let list of movieImg">
+            <img style="width: 200px; height: 200px;" src="{{list.img}}" alt="" >
+            <p class="text">{{list.title}}</p>
+        </div>
+    </div>
+
+      <div class="img" *ngIf="cinemaImg.length>0">
+        <div class="cont" *ngFor="let list of cinemaImg">
+            <img style="width: 200px; height: 200px;" src="{{list.img}}" alt="" >
+            <p>{{list.name}}</p>
+        </div>
+      </div>  
+    
+    
+    
+</div> -->
+
+
+<div class="row" *ngIf="movieImg.length>0" >
+    <div class="column" *ngFor="let movie of movieImg">
+  <div class="flip-card">
+    <div class="flip-card-inner">
+      <div class="flip-card-front">
+        <img src="{{movie.img}}" alt="Avatar" style="width:300px;height:300px;">
+      </div>
+      <div class="flip-card-back">
+        <h1>{{movie.title | titlecase}}</h1> 
+        <h2>{{movie.language | titlecase}}</h2>
+        <h3>{{movie.genre | titlecase}}</h3>
+        <!-- <button id="book" (click)="select(movie._id)">Select</button> -->
+      </div>
+    </div>
+    </div>
+    </div>
+  </div>
+
+
+  <div class="row" *ngIf="cinemaImg.length>0" >
+    <div class="column" *ngFor="let cinema of cinemaImg">
+  <div class="flip-card">
+    <div class="flip-card-inner">
+      <div class="flip-card-front">
+        <img src="{{cinema.img}}" alt="Avatar" style="width:300px;height:300px;">
+      </div>
+      <div class="flip-card-back">
+        <h1>{{cinema.name | titlecase}}</h1> 
+        <h2>TicketPrice: {{cinema.ticketPrice}}</h2>
+        <!-- <h3>{{movie.genre | titlecase}}</h3> -->
+        <!-- <button id="book" (click)="select(movie._id)">Select</button> -->
+      </div>
+    </div>
+    </div>
+    </div>
+  </div>
+
+  <div class="row" *ngIf="showImg.length>0" >
+    <div class="column" *ngFor="let show of showImg">
+  <div class="flip-card">
+    <div class="flip-card-inner">
+      <div class="flip-card-front">
+        <img src="{{show.img}}" alt="Avatar" style="width:300px;height:300px;">
+      </div>
+      <div class="flip-card-back">
+        <h1>{{show.showtime | titlecase}}</h1> 
+        <h2>Seats Available: {{show.seatsAvailable}}</h2>
+        <!-- <h3>{{movie.genre | titlecase}}</h3> -->
+        <!-- <button id="book" (click)="select(movie._id)">Select</button> -->
+      </div>
+    </div>
+    </div>
+    </div>
+  </div>
+
+
+
+  <div class="container-fluid" *ngIf="total>0">
+    <div style="margin: 20px auto;">
+        <span [ngClass]="{'seat-disabled': true}">reserved</span>
+        <span [ngClass]="{'seat-selected': true}">selected</span>
+        <span [ngClass]="{'seat-select':true}">available</span>
+    </div>
+<table>
+    <tr *ngFor="let row of rows;let i=index">
+        <td *ngFor="let seat of row;let j=index">
+            <div [ngClass]="{'seat-select': checkSeatStatus(seat,i,j),'seat-selected':!checkSeatStatus(seat,i,j),'seat-disabled':isSeatReserved(seat,i,j)}"
+            (click)="seatSelect(seat,i,j)"></div>
+        </td>
+    </tr>
+    <tr><h2 style="color: goldenrod;">Screen</h2></tr>
+</table>
+
+<button (click)="openDialog()" id="submitButton">Book Seats</button>
+
+</div>
+
+<!-- <div class="container" *ngIf="result.seats>0">
+    <table class="table table-bordered table-striped table-dark">
+      <thead>
+      <tr>
+        <th>City</th>
+        <th>Movie</th>
+        <th>Theatre</th>
+        <th>Show</th>
+        <th>No of Seats</th>
+        <th>TicketPrice</th>
+        <th>Total</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr style="color: white;">
+        <td><span>{{result.city}}</span></td>
+        <td><span>{{result.movie}</span></td>
+        <td><span>{{result.cinema}}</span></td>
+        <td><span>{{result.showtime}}</span></td>
+        <td><span>{{result.seats}}</span></td>
+        <td><span>{{result.ticketPrice}}</span></td>
+        <td><span>{{result.total}}</span></td>
+      </tr>
+      </tbody>
+    </table>
+  </div> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <div class="flip-box" *ngIf="movieImg.length>0">
+    <div class="flip-box-inner" *ngFor="let list of movieImg">
+      <div class="flip-box-front" >
+        <img src="{{list.img}}" alt="{{list.title}}" style="width:300px;height:200px">
+      </div>
+      <div class="flip-box-back">
+        <h2>{{list.title}}</h2>
+      </div>
+    </div>
+</div>
+<div class="flip-box" *ngIf="cinemaImg.length>0">
+    <div class="flip-box-inner" *ngFor="let list of cinemaImg">
+        <div class="flip-box-front" >
+          <img src="{{list.img}}" alt="{{list.name}}" style="width:300px;height:200px">
+        </div>
+        <div class="flip-box-back">
+          <h2>{{list.name}}</h2>  
+        </div>
+      </div>
+  </div> -->
+
+
+<!-- <div class="wrapper">
+    <h1>Parallax Flipping Cards</h1>
+    <div class="cols">
+              <div class="col" ontouchstart="this.classList.toggle('hover');" *ngIf="movieImg.length>0">
+                  <div class="container" *ngFor="let list of movieImg">
+                      <div class="front" style="background-image: url({{list.img}})">
+                          <div class="inner">
+                              
+                          </div>
+                      </div>
+                      <div class="back">
+                          <div class="inner">
+                            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Alias cum repellat velit quae suscipit c.</p>
+                            <p>{{list.title}}</p>
+                            <p>{{list.genre}}</p>
+                            <p>{{list.language}}</p>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+
+
+
+              <div class="col" ontouchstart="this.classList.toggle('hover');" *ngIf="cinemaImg.length>0">
+                  <div class="container" *ngFor="let list of cinemaImg">
+                      <div class="front" style="background-image:url({{list.img}})">
+                          <div class="inner">
+                              
+                          </div>
+                      </div>
+                      <div class="back">
+                          <div class="inner">
+                              <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Alias cum repellat velit quae suscipit c.</p>
+                              <p>{{list.name}}</p>
+                            <p>{{list.ticketPrice}}</p>
+                            <p>{{list.city}}</p>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+
+          </div>
+   </div> -->

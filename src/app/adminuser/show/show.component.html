@@ -1,38 +1,131 @@
 <!-- <p>show works!</p> -->
-<form [formGroup]="showForm" (ngSubmit)="addshow()">
-    <h2>Show</h2>
-    <!-- <input type="text" placeholder="Enter show name" class="inp" formControlName="startAt"/> -->
+<div >
 
-            <label for="startAt">StartAt:</label>  
-            <select id="startAt" formControlName="startAt" class="inp">  
-                <option disabled>Select Start Time</option>  
-                <option>Choose Start Time</option>  
-                <option *ngFor="let loc of showNameList">{{loc}}</option>  
+    <form class="form-inline" [formGroup]="showForm" (ngSubmit)="addshow()">
+      <h5 style="color: goldenrod; padding: 10px;">Add Shows</h5>
+          <div class="row">
+            <div class="col">
+                <input style="width: auto;" type="text" class="form-control mb-2 mr-sm-2" placeholder="Enter show time" formControlName="startAt">
+                <label for="movie">Movie:</label>  
+                <select id="movie" formControlName="movieId" class="form-control mb-2 mr-sm-2">  
+                    <option disabled>Select Movie Name</option>  
+                    <option >Choose Movie Name</option>  
+                    <option *ngFor="let loc of movieList" >{{loc}}</option>  
+                </select>
+            <input style="width: auto;" type="number" class="form-control mb-2 mr-sm-2" placeholder="Enter total rows" formControlName="row">
+            </div>
+            <div class="col">
+                <label for="location">Location:</label>  
+                <select id="location" formControlName="cityId" class="form-control mb-2 mr-sm-2" (change)="onChangeLocation()">  
+                    <option disabled>Select Location</option>  
+                    <option >Choose Location</option>  
+                    <option *ngFor="let loc of locationList" >{{loc}}</option>  
+                </select>
+                <label for="cinema">Cinema:</label>  
+                <select id="cinema" formControlName="cinemaId" class="form-control mb-2 mr-sm-2">  
+                    <option>Select Cinema Name</option>  
+                    <!-- <option>Choose Cinema Name</option>   -->
+                    <option *ngFor="let loc of cinemaList">{{loc}}</option>  
+                </select>
+                <input style="width: auto;" type="number" class="form-control mb-2 mr-sm-2" placeholder="Enter total columns" formControlName="col">
+            </div>
+          </div>          
+        <button style="margin-left: 1%;" type="submit" class="btn btn-primary mb-2" [disabled]="!showForm.valid">Add Show</button>
+      </form>
+
+      
+    
+    <div class="container" style="max-width: fit-content;margin-top: 3%;">
+
+      <div *ngIf="showList.length==0">
+        <h4>There are No Shows as of Now, Please Fill the details and click Add</h4>
+      </div>
+
+        <table class="table table-bordered table-striped table-dark" *ngIf="showList.length>0">
+          <thead>
+          <tr>
+            <th>City</th>
+            <th>Movie</th>
+            <th>Theatre</th>
+            <th>ticketPrice</th>
+            <th>ShowTime</th>
+            <th>Seats Available</th>
+            <th>Action</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr  style="color: white;" *ngFor="let list of showList">
+            <td><span>{{list.city}}</span></td>
+            <td><span>{{list.title}}</span></td>
+            <td><span>{{list.name}}</span></td>
+            <td><span>{{list.ticketPrice}}</span></td>
+            <td><span>{{list.startAt}}</span></td>
+            <td><span>{{list.seatsAvailable}}</span></td>
+            <!-- <td><span><img style="width: 10vw;height: 10vh;" src="{{list.img}}" alt="Poster"></span></td> -->
+            <td>
+                <button class="btn btn-sm btn-warning" (click)="edit(list.id)">
+                  <i class="fa fa-edit"></i>Edit</button>
+                <button class="btn btn-sm btn-danger" (click)="delete(list.id)">
+                  <i class="fa fa-remove"></i>Delete</button>
+              </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+
+
+      <form class="form-inline" [formGroup]="updateForm" (ngSubmit)="update()" *ngIf="show==true" >
+        <h5 style="color: goldenrod; padding: 10px;">Update Showtime Or Movie Playing</h5>
+        <div class="row">
+          <div class="col">
+              <input style="width: auto;" type="text" class="form-control mb-2 mr-sm-2" placeholder="Enter show time" formControlName="startAt">
+          <button style="margin-left: 1%;" type="submit" class="btn btn-primary mb-2">Update</button>
+          </div>
+          <div class="col">
+            <label for="moviee">Movie:</label>  
+            <select id="moviee" formControlName="movieId" class="form-control mb-2 mr-sm-2">  
+                <option disabled>Select Movie Name</option>  
+                <option >Choose Movie Name</option>  
+                <option *ngFor="let loc of movieList" >{{loc}}</option>  
             </select>
+              <button style="margin-left: 1%;" type="submit" class="btn btn-primary mb-2" (click)="close()">Close</button>
+          </div>
+        </div>          
+
+    </form>
+
+</div>
+
+
+
+
+<!-- <form [formGroup]="showForm" (ngSubmit)="addshow()">
+    <h2>Show</h2>
+            <input type="text" placeholder="Enter show time" class="inp" formControlName="startAt"/>
 
             <label for="movie">Movie:</label>  
             <select id="movie" formControlName="movieId" class="inp">  
                 <option disabled>Select Movie Name</option>  
                 <option>Choose Movie Name</option>  
-                <option *ngFor="let loc of movieList">{{loc}}</option>  
+                <option *ngFor="let loc of movieList" value="{{loc._id}}">{{loc.title}}</option>  
+            </select>
+            <label for="city">City:</label>  
+            <select id="city" formControlName="cityId" class="inp" (change)='onChangeLocation()'>  
+                <option disabled>Select Movie Name</option>  
+                <option>Choose Movie Name</option>  
+                <option *ngFor="let loc of movieList" value="{{loc._id}}">{{loc.title}}</option>  
             </select>
             <label for="cinema">Cinema:</label>  
             <select id="cinema" formControlName="cinemaId" class="inp">  
                 <option disabled>Select Cinema Name</option>  
                 <option>Choose Cinema Name</option>  
-                <option *ngFor="let loc of cinemaList">{{loc}}</option>  
+                <option *ngFor="let loc of cinemaList" value="{{loc.id}}">{{loc.name}}</option>  
             </select>        
-
-
-    <!-- <input type="text" placeholder="Enter movie id" class="inp" formControlName="movieId"/> -->
-    <!-- <input type="text" placeholder="Enter cinema id" class="inp" formControlName="cinemaId"/> -->
-    <input type="text" placeholder="Enter city id" class="inp" formControlName="cityId"/>
     <div class="btns">
-    <!-- <button (click)="goToLogin()">Add Location</button> -->
     <button [disabled]="!showForm.valid">Add Movie</button>
     </div>
-</form>
+</form> -->
 <!-- <button (click)="getAllShows()">Get all Shows</button> -->
-<ul *ngFor="let list of showList">
+<!-- <ul *ngFor="let list of showList">
     <li> {{ list.startAt }} : {{list.title}} : {{list.name}} : {{list.ticketPrice}} : {{list.city}}</li>
-</ul>
+</ul> -->

@@ -41,11 +41,12 @@ color:black;
 /* a */
 
 .block{
-  width: 320px;
+  /* width: 320px; */
   padding: 5px;
-  border: 1px solid gray;
-  background-color: black;
+  /* border: 1px solid gray;
+  background-color: black; */
   height: fit-content;
+  /* font-size: smaller; */
 }
 h1{
   color: #fa255e;
@@ -53,7 +54,7 @@ h1{
   padding: 10px;
 }
 form{
-width: 95%;
+/* width: 95%; */
 /* margin: 5px; */
 display: flex;
 align-items: center;
@@ -68,8 +69,8 @@ font-family: sans-serif;
 }
     .inp{
       padding: 10px 10px;
-      margin: 10px;
-      width: 80%;
+      margin: 6px;
+      width: 90%;
      
     }
     .btns{
@@ -83,4 +84,24 @@ font-family: sans-serif;
 
 
 
+    img{
+      width: 100vw;
+      height: 92vh;
+      
+  }
+  .back{
+    color: goldenrod;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  /* font-size: 30px; */
+  align-items: center;
+  text-align: center;
+  padding-top: 18px;
+  /* color: rgb(209, 141, 141); */
+  /* font-family:Brush Script MT, Brush Script Std, cursive ; */
+  
+  
+  }
  

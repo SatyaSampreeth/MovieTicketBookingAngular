@@ -1,24 +1,106 @@
 <!-- <p>cinema works!</p> -->
-<form [formGroup]="cinemaForm" (ngSubmit)="addcinema()">
+
+<div >
+
+    <form class="form-inline" [formGroup]="cinemaForm" (ngSubmit)="addcinema()">
+      <h5 style="color: goldenrod; padding: 10px;">Add Cinemas</h5>
+          <div class="row">
+            <div class="col">
+                <input style="width: auto;" type="text" class="form-control mb-2 mr-sm-2" placeholder="Enter cinema name" formControlName="name">
+                <input style="width: auto;" type="text" class="form-control mb-2 mr-sm-2" placeholder="Enter ticketPrice(Rs)"formControlName="ticketPrice">
+                
+            </div>
+            <div class="col">
+                <label for="location">Location:</label>  
+                <select id="location" formControlName="city" class="form-control mb-2 mr-sm-2">  
+                    <option disabled>Select Location</option>  
+                    <option>Choose Location</option>  
+                    <option *ngFor="let loc of locationList">{{loc}}</option>  
+                </select>
+                <input style="width: auto;" type="text" class="form-control mb-2 mr-sm-2" formControlName="img" placeholder="Enter Image URL">
+            </div>
+          </div>          
+        <button style="margin-left: 1%;" type="submit" class="btn btn-primary mb-2" [disabled]="!cinemaForm.valid">Add Cinema</button>
+      </form>
+    
+     
+       
+
+    <div class="container" style="max-width: fit-content;margin-top: 3%;">
+
+      <div *ngIf="cinemaList.length==0">
+        <h4>There are No Cinemas as of Now, Please Fill the details and click Add</h4>
+      </div> 
+
+        <table class="table table-bordered table-striped table-dark" *ngIf="cinemaList.length>0">
+          <thead>
+          <tr>
+            <th>Theatre</th>
+            <th>ticketPrice</th>
+            <th>City</th>
+            <th>Poster</th>
+            <th>Action</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr  style="color: white;" *ngFor="let list of cinemaList">
+            <td><span>{{list.name}}</span></td>
+            <td><span>{{list.ticketPrice}}</span></td>
+            <td><span>{{list.city}}</span></td>
+            <td><span><img style="width: 10vw;height: 10vh;" src="{{list.img}}" alt="Poster"></span></td>
+            <td>
+                <button class="btn btn-sm btn-warning" (click)="edit(list.id)">
+                  <i class="fa fa-edit"></i>Edit</button>
+                <button class="btn btn-sm btn-danger" (click)="delete(list.id)">
+                  <i class="fa fa-remove"></i>Delete</button>
+              </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <form class="form-inline" [formGroup]="updateForm" (ngSubmit)="update()" *ngIf="show==true">
+        <h5 style="color: goldenrod; padding: 10px;">Update Cinema Name, ticketPrice or Logo</h5>
+        <div class="row">
+          <div class="col">
+              <input style="width: auto;" type="text" class="form-control mb-2 mr-sm-2" placeholder="Enter cinema name" value="{{result.name}}" formControlName="name">
+              <input style="width: auto;" type="text" class="form-control mb-2 mr-sm-2" placeholder="Enter ticketPrice(Rs)"formControlName="ticketPrice" value="{{result.ticketPrice}}">
+              <button style="margin-left: 1%;" type="submit" class="btn btn-primary mb-2">Update</button>
+          </div>
+          <div class="col">
+              <label for="locationn">Location:</label>  
+              <select id="locationn" formControlName="city" class="form-control mb-2 mr-sm-2">  
+                  <option disabled>Select Location</option>  
+                  <option>Choose Location</option>  
+                  <option *ngFor="let loc of locationList">{{loc}}</option>  
+              </select>
+              <input style="width: auto;" type="text" class="form-control mb-2 mr-sm-2" formControlName="img" value="{{result.img}}" placeholder="Enter Image URL">
+              <button style="margin-left: 1%;" type="submit" class="btn btn-primary mb-2" (click)="close()">Close</button>
+          </div>
+        </div>          
+
+    </form> 
+
+</div>
+
+
+
+<!-- <form [formGroup]="cinemaForm" (ngSubmit)="addcinema()">
     <h2>Cinema</h2>
     <input type="text" placeholder="Enter cinema name" class="inp" formControlName="name"/>
     <input type="number" placeholder="Enter ticketPrice " class="inp" formControlName="ticketPrice"/>
-
-
-    <label for="location">Location:</label>  
+ -->
+    <!-- <label for="location">Location:</label>  
             <select id="location" formControlName="city" class="inp">  
                 <option disabled>Select Location</option>  
                 <option>Choose Location</option>  
                 <option *ngFor="let loc of locationList">{{loc}}</option>  
-            </select>
-
-    <!-- <input type="text" placeholder="Enter city id" class="inp" formControlName="city"/> -->
+            </select> -->
+<!-- 
     <div class="btns">
-    <!-- <button (click)="goToLogin()">Add Location</button> -->
     <button [disabled]="!cinemaForm.valid">Add Movie</button>
     </div>
-</form>
-<!-- <button (click)="getAllCinemas()">Get all Cinemas</button> -->
-<ul *ngFor="let list of cinemaList">
+</form> -->
+<!-- <ul *ngFor="let list of cinemaList">
     <li>{{ list.id }} : {{ list.name }} : {{list.ticketPrice}} : {{list.city}}</li>
-</ul>
+</ul> -->

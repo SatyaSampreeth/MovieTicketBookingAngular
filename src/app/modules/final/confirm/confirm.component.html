@@ -1,10 +1,43 @@
-<p>confirm works!</p>
+<!-- <p>confirm works!</p>
 <p>City: {{result.city}}</p>
 <p>Movie: {{result.movie}}</p>
 <p>Theatre: {{result.cinema}}</p>
 <p>Show:{{result.showtime}}</p>
 <p>No.of Seats: {{result.seats}}</p>
 <p>TicketPrice: {{result.ticketPrice}}</p>
-<p>Total Price: {{result.total}}</p>
+<p>Total Price: {{result.total}}</p> -->
 <!-- <p>{{result| json}}</p> -->
 
+<div class="container">
+    <h3><span>Your booking has been completed successfully, See you at the Big Screen</span></h3>
+    <table class="table table-bordered table-striped table-dark">
+      <thead>
+      <tr>
+        <th>City</th>
+        <th>Movie</th>
+        <th>Theatre</th>
+        <th>Show</th>
+        <th>No of Seats</th>
+        <th>TicketPrice</th>
+        <th>Total</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr  style="color: white;">
+        <td><span>{{result.city}}</span></td>
+        <td><span>{{result.movie}}</span></td>
+        <td><span>{{result.cinema}}</span></td>
+        <td><span>{{result.showtime}}</span></td>
+        <td><span>{{result.seats}}</span></td>
+        <td><span>{{result.ticketPrice}}</span></td>
+        <td><span>{{result.total}}</span></td>
+      </tr>
+      </tbody>
+    </table>
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+        <img src="{{result.movieimg}}" alt="movieImg">
+        <button (click)="confirm()" id="submitButton">Check out</button>
+        <img src="{{result.cinemaimg}}"   alt="cinemaImg">
+    </div>
+    
+  </div>

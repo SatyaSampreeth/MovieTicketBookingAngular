@@ -11,15 +11,35 @@ export class CommonService {
   constructor(private http:HttpClient) { }
 
   getUsers(){
-    return this.http.get(this.url+'/users');
+    return this.http.get<any>(this.url+'/users');
   }
 
   getLocations(){
     return this.http.get<any>(this.url+'/location/all')
   }
+  getLocationById(value:any){
+    return this.http.get<any>(this.url+'/location/'+value)
+  }
+
 
   getMovies(){
     return this.http.get<any>(this.url+'/movie/all')
+  }
+
+  getMovieById(value:any){
+    return this.http.get<any>(this.url+'/movie/'+value)
+  }
+
+  getCinemaById(value:any){
+    return this.http.get<any>(this.url+'/cinema/cinema/'+value)
+  }
+  
+  getShowById(value:any){
+    return this.http.get<any>(this.url+'/showtime/show/'+value)
+  }
+
+  getUserById(value:any){
+    return this.http.get<any>(this.url+'/'+value)
   }
 
   getCinemas(){
@@ -29,4 +49,9 @@ export class CommonService {
   getShows(){
     return this.http.get<any>(this.url+'/showtime/all')
   }
+
+  getCinemasByLoc(value:any){
+    return this.http.get<any>(this.url+'/cinema/'+value)
+  }
+
 }

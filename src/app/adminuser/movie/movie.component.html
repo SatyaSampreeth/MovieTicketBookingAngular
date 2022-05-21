@@ -1,15 +1,94 @@
 <!-- <p>movie works!</p> -->
-<form [formGroup]="movieForm" (ngSubmit)="addmovie()">
+
+<div >
+
+    <form class="form-inline" [formGroup]="movieForm" (ngSubmit)="addmovie()">
+      <h5 style="color: goldenrod; padding: 10px;">Add Movies</h5>
+          <div class="row">
+            <div class="col">
+                <input style="width: auto;" type="text" class="form-control mb-2 mr-sm-2" formControlName="title" placeholder="Enter title">
+                <input style="width: auto;" type="text" class="form-control mb-2 mr-sm-2" formControlName="genre" placeholder="Enter genre">
+            </div>
+            <div class="col">
+                <input style="width: auto;" type="text" class="form-control mb-2 mr-sm-2" formControlName="language" placeholder="Enter language">
+                <input style="width: auto;" type="text" class="form-control mb-2 mr-sm-2" formControlName="img" placeholder="Enter Image URL">
+            </div>
+          </div>          
+        <button style="margin-left: 1%;" type="submit" class="btn btn-primary mb-2" [disabled]="!movieForm.valid">Add Movie</button>
+      </form>
+    
+      <form class="form-inline" [formGroup]="updateForm" (ngSubmit)="update()" *ngIf="show==true">
+        <h5 style="color: goldenrod; padding: 10px;">Update Movie Title, Language or Genre</h5>
+        <div class="row">
+          <div class="col">
+              <input style="width: auto;" type="text" class="form-control mb-2 mr-sm-2" formControlName="title" value="{{result.title}}" placeholder="Enter title">
+              <input style="width: auto;" type="text" class="form-control mb-2 mr-sm-2" formControlName="genre" value="{{result.genre}}" placeholder="Enter genre">
+              <button  type="submit" class="btn btn-primary mb-2">Update</button>
+          </div>
+          <div class="col">
+              <input style="width: auto;" type="text" class="form-control mb-2 mr-sm-2" formControlName="language" value="{{result.language}}" placeholder="Enter language">
+              <input style="width: auto;" type="text" class="form-control mb-2 mr-sm-2" formControlName="img" value="{{result.img}}" placeholder="Enter Image URL">
+              <button  type="submit" class="btn btn-primary mb-2"  (click)="close()">Close</button>
+          </div>
+          <div class="col">
+            
+          </div>
+        </div>     
+    </form>  
+
+    <div class="container" style="max-width: fit-content;margin-top: 3%;">
+
+      <div *ngIf="movieList.length==0">
+        <h4>There are No Movies as of Now, Please Fill the details and click Add</h4>
+      </div>
+
+        <table class="table table-bordered table-striped table-dark" *ngIf="movieList.length>0">
+          <thead>
+          <tr>
+            <th>Title</th>
+            <th>Genre</th>
+            <th>Language</th>
+            <th>Poster</th>
+            <th>Action</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr  style="color: white;" *ngFor="let list of movieList">
+            <td><span>{{list.title}}</span></td>
+            <td><span>{{list.genre}}</span></td>
+            <td><span>{{list.language}}</span></td>
+            <td><span><img style="width: 10vw;height: 10vh;" src="{{list.img}}" alt="Poster"></span></td>
+            <td>
+                <button class="btn btn-sm btn-warning" (click)="edit(list._id)">
+                  <i class="fa fa-edit"></i>Edit</button>
+                <button class="btn btn-sm btn-danger" (click)="delete(list._id)">
+                  <i class="fa fa-remove"></i>Delete</button>
+              </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+</div>
+
+
+
+
+
+<!-- <form [formGroup]="movieForm" (ngSubmit)="addmovie()">
     <h2>Movie</h2>
     <input type="text" placeholder="Enter movie name" class="inp" formControlName="title"/>
     <input type="text" placeholder="Enter movie language" class="inp" formControlName="language"/>
     <input type="text" placeholder="Enter movie genre" class="inp" formControlName="genre"/>
+    <input type="text" placeholder="Enter movie image url" class="inp" formControlName="img"/>
     <div class="btns">
-    <!-- <button (click)="goToLogin()">Add Location</button> -->
     <button [disabled]="!movieForm.valid">Add Movie</button>
     </div>
-</form>
-<!-- <button (click)="getAllMovies()">Get all movies</button> -->
-<ul *ngFor="let list of movieList">
-    <li>{{list._id}} : {{ list.title }} </li>
-</ul>
+</form> -->
+
+<!-- <ul *ngFor="let list of movieList">
+    <li><p>{{ list.title }} </p>
+        <p>{{list.genre}}</p>
+        <p>{{list.language}}</p>
+        <img src="{{list.img}}" alt="">
+    </li>
+</ul> -->

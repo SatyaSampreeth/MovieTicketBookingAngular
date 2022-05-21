@@ -4,7 +4,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/auth.service';
 import { CommonService } from 'src/app/common.service';
-
+import { NgToastService } from 'ng-angular-popup';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -15,7 +15,7 @@ export class LoginComponent implements OnInit {
   loginForm:any = FormGroup;
   result:any
   // users:any = [];
-  constructor(private formBuilder: FormBuilder, private router:Router, private auth:AuthService,private http:HttpClient) { }
+  constructor(private formBuilder: FormBuilder, private router:Router, private auth:AuthService,private http:HttpClient, private toast:NgToastService) { }
 
 
    login() {
@@ -27,19 +27,23 @@ export class LoginComponent implements OnInit {
               this.result=res
               this.auth.setisLoggedin(true)
               this.auth.setRole(this.result.role)
-              alert("logged in")
+              this.toast.success({detail:"Success Message", summary:"Login is Success",duration:5000})
+              // alert("logged in")
               if(this.result.token){
                 localStorage.setItem('token' , this.result.token)
                 localStorage.setItem('id',this.result._id)
                 localStorage.setItem('role',this.result.role)
+                this.auth.set_userId(this.result._id)
                 // console.log('success',this.result.token)
-                this.router.navigate([''])
+                this.router.navigate(['/home'])
                 // console.log(this.auth.getisLoggedin())
               }
 
             },
             error: (err) => { console.log(err) 
-              alert("invalid details")}
+              this.toast.error({detail:"Login Failed",summary:"Please Try Again",duration:5000})
+              // alert("invalid details")
+            }
           })
     // const obj ={
     //   email: this.loginForm.value.email,

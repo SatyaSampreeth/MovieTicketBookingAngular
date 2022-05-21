@@ -1,13 +1,15 @@
 <!-- <p>navbar works!</p> -->
 <nav>
     <div class="logo">
-        <a class="logoname" *ngIf="!auth.getisLoggedin()"   href="">MovieTicketBooking.Online</a>
-        <a *ngIf="auth.getisLoggedin()" routerLink="home"  class="logoname">MovieTicketBooking.Online</a>
+        <!-- <img src="img.png" alt=""> -->
+        <a class="logoname" *ngIf="!auth.getisLoggedin()"   href="">BookMY Seats</a>
+        <a *ngIf="auth.getisLoggedin()" routerLink="home"  class="logoname">BookMY Seats</a>
     </div>
     <ul class="nav-links">
         <!-- <li><a routerLink="/" routerLinkActive>Home</a></li> -->
         <li *ngIf="!auth.getisLoggedin()"><a routerLink="users/register">Signup</a></li>
         <li *ngIf="!auth.getisLoggedin()"><a routerLink="users/login" routerLinkActive>Login</a></li>
+        <li *ngIf="auth.getisLoggedin() && auth.isAdmin()"><a routerLink="adduser">Users</a></li>
         <li *ngIf="auth.getisLoggedin() && auth.isAdmin()"><a routerLink="addlocation">Location</a></li>
         <li *ngIf="auth.getisLoggedin() && auth.isAdmin()"><a routerLink="addmovie">Moive</a></li>
         <li *ngIf="auth.getisLoggedin() && auth.isAdmin()"><a routerLink="addcinema">Theatre</a></li>
@@ -21,4 +23,5 @@
     </ul>
 </nav>
 <router-outlet></router-outlet>
+
 <!-- routerLink="/" routerLinkActive -->

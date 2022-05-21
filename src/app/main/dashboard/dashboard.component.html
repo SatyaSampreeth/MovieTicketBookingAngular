@@ -1,4 +1,81 @@
-<h1>My Bookings</h1>
+<!-- <h1>My Bookings</h1> -->
+
+
+<div class="container">
+  <div *ngIf="allList.length==0 && reservationList==0">
+    <h4>There are No Bookings as of Now</h4>
+  </div>
+    <table class="table table-bordered table-striped table-dark" *ngIf="reservationList.length>0">
+      <thead>
+      <tr>
+        <th>City</th>
+        <th>Movie</th>
+        <th>Theatre</th>        
+        <th>Show</th>
+        <th>No of Seats</th>
+        <th>TicketPrice</th>
+        <th>Total</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let friend of reservationList" style="color: white;">
+        <td><span>{{friend.city}}</span></td>
+        <td><span>{{friend.title}}</span></td>
+        <td><span>{{friend.cinema}}</span></td>
+        <td><span>{{friend.show}}</span></td>
+        <td><span>{{friend.seats}}</span></td>
+        <td><span>{{friend.ticketPrice}}</span></td>
+        <td><span>{{friend.total}}</span></td>
+      </tr>
+      </tbody>
+    </table>
+
+    <table class="table table-bordered table-striped table-dark" *ngIf="allList.length>0">
+      <thead>
+      <tr>
+        <th>User</th>
+        <th>City</th>
+        <th>Movie</th>
+        <th>Theatre</th>        
+        <th>Show</th>
+        <th>No of Seats</th>
+        <th>TicketPrice</th>
+        <th>Total</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let friend of allList" style="color: white;">
+        <td><span>{{friend.user}}</span></td>
+        <td><span>{{friend.city}}</span></td>
+        <td><span>{{friend.title}}</span></td>
+        <td><span>{{friend.cinema}}</span></td>
+        <td><span>{{friend.show}}</span></td>
+        <td><span>{{friend.seats}}</span></td>
+        <td><span>{{friend.ticketPrice}}</span></td>
+        <td><span>{{friend.total}}</span></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+
+<!-- <ul *ngFor="let list of reservationList">
+    <li><p>City: {{list.city}}</p>
+        <p>Theatre: {{list.cinema}}</p>
+        <p>Show:{{list.show}}</p>
+        <p>No.of Seats: {{list.seats}}</p>
+        <p>TicketPrice: {{list.ticketPrice}}</p>
+        <p>Total Price: {{list.total}}</p></li>
+</ul> -->
+<!-- <ul *ngFor="let list of allList">
+    <li><p>City: {{list.city}}</p>
+        <p>User: {{list.user}}</p>
+        <p>Theatre: {{list.cinema}}</p>
+        <p>Show:{{list.show}}</p>
+        <p>No.of Seats: {{list.seats}}</p>
+        <p>TicketPrice: {{list.ticketPrice}}</p>
+        <p>Total Price: {{list.total}}</p></li>
+</ul> -->
 <!-- <p>dashboard works!</p>
 
 <nav>

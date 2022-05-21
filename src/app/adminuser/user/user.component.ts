@@ -4,39 +4,34 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { CommonService } from 'src/app/common.service';
 
 @Component({
-  selector: 'app-movie',
-  templateUrl: './movie.component.html',
-  styleUrls: ['./movie.component.css']
+  selector: 'app-user',
+  templateUrl: './user.component.html',
+  styleUrls: ['./user.component.css']
 })
-export class MovieComponent implements OnInit {
-
-  constructor(private formBuilder:FormBuilder, private http:HttpClient, private srv:CommonService) { }
-
-  movieForm:any = FormGroup;
-  movieList:any=[]
+export class UserComponent implements OnInit {
+  
+  userForm:any = FormGroup;
+  userList:any=[]
   updateForm:any = FormGroup;
   id:any
   show:boolean=false
-  result:any={}
+  result:any
+  constructor(private formBuilder:FormBuilder, private http:HttpClient, private srv:CommonService) { }
 
-
-  // getAllMovies(){
-
-  // }
-
-  addmovie() {
-    console.log(this.movieForm.value)
+  adduser() {
+    console.log(this.userForm.value)
     const obj ={
-      title: this.movieForm.value.title,
-      language:this.movieForm.value.language,
-      genre: this.movieForm.value.genre,
-      img:this.movieForm.value.img
+      first_name: this.userForm.value.fname,
+      last_name:this.userForm.value.lname,
+      email: this.userForm.value.email,
+      password: this.userForm.value.password,
+      // role:this.userForm.value.role
     };
-    return this.http.post("http://localhost:9000/movie/add",obj)
+    return this.http.post("http://localhost:9000/register",obj)
     .subscribe({
       next: (res) => {
         console.log(res)
-        this.movieList.push(res)
+        this.userList.push(res)
         this.ngOnInit()
         // alert("logged in")
         // this.router.navigateByUrl('book')
@@ -48,7 +43,7 @@ export class MovieComponent implements OnInit {
 
 delete(value:any){
   console.log(value) 
-  return this.http.delete("http://localhost:9000/movie/"+ value)
+  return this.http.delete("http://localhost:9000/"+ value)
   .subscribe({
     next: (res) => {
       console.log(res)
@@ -64,15 +59,16 @@ delete(value:any){
 
 edit(value:any){
   this.id=value
-  this.result={}
-  this.srv.getMovieById(this.id)
+  this.result=['guest','admin']
+  console.log(this.result)
+  this.srv.getUserById(this.id)
   .subscribe({
     next: (res) => {
       this.result=res
       console.log('success',this.result)
     },
     error: (err) => { console.log(err) 
-      alert("invalid movie details")}
+      alert("invalid locations details")}
   })
   console.log(this.id)
   this.show=true
@@ -85,14 +81,11 @@ close(){
 }
 
 update(){
-  console.log(this.updateForm.value)
+  console.log(this.updateForm.value.role)
   const obj ={
-    title: this.updateForm.value.title || this.result.title,
-    language:this.updateForm.value.language || this.result.language,
-    genre: this.updateForm.value.genre || this.result.genre,
-    img:this.updateForm.value.img || this.result.img
+    role: this.updateForm.value.role,
   };
-  return this.http.patch<any>("http://localhost:9000/movie/"+this.id,obj)
+  return this.http.patch<any>("http://localhost:9000/"+this.id,obj)
   .subscribe({
     next: (res) => {
       // for(let item of res){
@@ -111,35 +104,35 @@ update(){
   })
 }
 
-
   ngOnInit(): void {
-    this.movieForm = this.formBuilder.group({
-      title: new FormControl('', Validators.required),
-      language: new FormControl('', Validators.required),
-      genre: new FormControl('', Validators.required),
-      img: new FormControl('', Validators.required)
+    
+    this.userForm = this.formBuilder.group({
+      fname: new FormControl('', Validators.required),
+      lname: new FormControl('', Validators.required),
+      email: new FormControl('', Validators.required),
+      password:new FormControl('', Validators.required),
+      // role: new FormControl('', Validators.required)
     })
 
     this.updateForm = this.formBuilder.group({
-      title: new FormControl('', Validators.required),
-      language: new FormControl('', Validators.required),
-      genre: new FormControl('', Validators.required),
-      img: new FormControl('', Validators.required)
+      role: new FormControl('', Validators.required)
     })
-    
-    this.movieList=[]
 
-    this.srv.getMovies()
+    
+    this.userList=[]
+
+    this.srv.getUsers()
     .subscribe({
       next: (res) => {
         for(let item of res){
-          this.movieList.push(item)
+          this.userList.push(item)
         }
-        console.log('success',res)
+        console.log('success',res,this.userList)
       },
       error: (err) => { console.log(err) 
-        alert("invalid movie details")}
+        alert("invalid user details")}
     })
   }
+
 
 }

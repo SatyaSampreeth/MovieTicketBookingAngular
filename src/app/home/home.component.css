@@ -1,10 +1,29 @@
-/* body{
- background-image:url("home.jpg"); 
- background-position: center;
- background-repeat: no-repeat;
- background-size: cover;
-  } */
-  img{
+
+  /* img{
+
+      margin: 1px;
       width: 100vw;
-      height: 90vh;
-  }
+      height: 91vh;
+  } */
+
+
+img{
+    width: 100vw;
+    height: 92vh;
+    
+}
+.back{
+  color: goldenrod;
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+font-size: 30px;
+align-items: center;
+text-align: center;
+/* padding-bottom: 250px; */
+/* color: rgb(209, 141, 141); */
+/* font-family:Brush Script MT, Brush Script Std, cursive ; */
+
+
+}

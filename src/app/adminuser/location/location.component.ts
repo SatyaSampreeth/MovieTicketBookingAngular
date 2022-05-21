@@ -12,8 +12,11 @@ export class LocationComponent implements OnInit {
 
   constructor(private formBuilder:FormBuilder, private http:HttpClient, private srv:CommonService) { }
   locationForm:any = FormGroup;
+  updateForm:any = FormGroup;
   locationList:any=[]
-
+  id:any
+  show:boolean=false
+  result:any={}
   // getAllLocations(){
     
   // }
@@ -23,21 +26,93 @@ export class LocationComponent implements OnInit {
     const obj ={
       city: this.locationForm.value.city,
     };
-    return this.http.post("http://localhost:9000/location/add",obj)
+    return this.http.post<any>("http://localhost:9000/location/add",obj)
     .subscribe({
       next: (res) => {
-        console.log(res)
+        // for(let item of res){
+        //   this.locationList.push(item)
+        // }
+        
+        this.locationList.push(res)
+        console.log(this.locationList)
         // alert("logged in")
         // this.router.navigateByUrl('book')
       },
       error: (err) => { console.log(err) 
-      alert("invalid details")} 
+      alert("already exists")} 
     })
 }
+
+delete(value:any){
+  console.log(value) 
+  return this.http.delete("http://localhost:9000/location/"+ value)
+  .subscribe({
+    next: (res) => {
+      console.log(res)
+      this.ngOnInit()
+      // this.locationList.remove(value)
+      // alert("logged in")
+      // this.router.navigateByUrl('book')
+    },
+    error: (err) => { console.log(err) 
+    alert("error")} 
+  })
+}
+
+edit(value:any){
+  this.id=value
+  this.result={}
+  this.srv.getLocationById(this.id)
+  .subscribe({
+    next: (res) => {
+      this.result=res
+      console.log('success',this.result)
+    },
+    error: (err) => { console.log(err) 
+      alert("invalid locations details")}
+  })
+  console.log(this.id)
+  this.show=true
+}
+
+close(){
+  // this.result={}
+  // this.id=''
+  this.show=false
+}
+
+update(){
+  console.log(this.updateForm.value.city)
+  const obj ={
+    city: this.updateForm.value.city,
+  };
+  return this.http.patch<any>("http://localhost:9000/location/"+this.id,obj)
+  .subscribe({
+    next: (res) => {
+      // for(let item of res){
+      //   this.locationList.push(item)
+      // }
+      console.log(res)
+      this.close()
+      this.ngOnInit()
+      // this.locationList.push(res)
+      
+      // alert("logged in")
+      // this.router.navigateByUrl('book')
+    },
+    error: (err) => { console.log(err) 
+    alert("already exists")} 
+  })
+}
+
   ngOnInit(): void {
     this.locationForm = this.formBuilder.group({
       city: new FormControl('', Validators.required)
     })
+    this.updateForm = this.formBuilder.group({
+      city: new FormControl('', Validators.required)
+    })
+    this.locationList=[]
     this.srv.getLocations()
     .subscribe({
       next: (res) => {
@@ -47,7 +122,7 @@ export class LocationComponent implements OnInit {
         console.log('success',res)
       },
       error: (err) => { console.log(err) 
-        alert("invalid movie details")}
+        alert("invalid locations details")}
     })
   }
 

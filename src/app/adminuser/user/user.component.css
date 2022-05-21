@@ -55,3 +55,7 @@ element.style {
   table .btn{
     margin: 2px;
   }  
+  label{
+    visibility: hidden;
+    position: absolute !important
+}

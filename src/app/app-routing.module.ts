@@ -14,6 +14,7 @@ import { SeatsComponent } from './main/seats/seats.component';
 import { HomeComponent } from './home/home.component';
 import { AuthGuard } from './auth.guard';
 import { RoleGuard } from './role.guard';
+import { UserComponent } from './adminuser/user/user.component';
 
 const routes: Routes = [
   {
@@ -22,6 +23,7 @@ const routes: Routes = [
   {path: 'movie', loadChildren: () => import("./modules/movie/movie.module").then(module => module.MovieModule)  },
   {path: 'users', loadChildren: () => import("./user/user.module").then(module => module.UserModule) },
   {path: 'final', loadChildren: () => import("./modules/final/final.module").then(module => module.FinalModule) },
+  {path: 'admin', loadChildren: () => import("./admin_modules/location/location.module").then(module => module.LocationModule) },
   {
     path:'bookings',component:DashboardComponent,canActivate:[AuthGuard]
   },
@@ -43,9 +45,12 @@ const routes: Routes = [
   {
     path: 'addshow',component:ShowComponent,canActivate:[RoleGuard]
   },
-  // {
-  //   path: 'select',component:SelectComponent
-  // },
+  {
+    path: 'adduser',component:UserComponent,canActivate:[RoleGuard]
+  },
+  {
+    path: 'select',component:SelectComponent
+  },
   {
     path: 'seats',component:SeatsComponent,canActivate:[AuthGuard]
   },

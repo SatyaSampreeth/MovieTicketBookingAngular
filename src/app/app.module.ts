@@ -40,7 +40,10 @@ import { HomeComponent } from './home/home.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { SharedModule } from './shared/shared.module';
 import { TokenInterceptorService } from './token-interceptor.service';
-
+import { NgbModule, NgbToastModule } from '@ng-bootstrap/ng-bootstrap';
+import { UserComponent } from './adminuser/user/user.component';
+import { NgToastModule } from 'ng-angular-popup'
+import { ConfirmationPopoverModule } from 'angular-confirmation-popover'
 @NgModule({
   declarations: [
     AppComponent,
@@ -56,6 +59,7 @@ import { TokenInterceptorService } from './token-interceptor.service';
     SelectComponent,
     SeatsComponent,
     HomeComponent,
+    UserComponent,
     // NavbarComponent
   ],
   imports: [
@@ -71,7 +75,12 @@ import { TokenInterceptorService } from './token-interceptor.service';
     MatSnackBarModule,
     MatProgressSpinnerModule,
     MatButtonModule,
-    SharedModule
+    SharedModule,
+    NgbModule,
+    NgToastModule,
+    ConfirmationPopoverModule.forRoot({
+      confirmButtonType: 'danger' // defaults here
+    })
   ],
   providers: [
     AuthGuard, AuthService, RoleGuard,

@@ -15,14 +15,14 @@ export class AdminComponent implements OnInit {
   // busIcon = faBusAlt;
   // dealsIcon = faMoneyCheckAlt;
   // supportIcon = faHeadset;
-
-
+  name:any
+  role:any
   movieList:any=[]
   locationList:any=[]
   cinemaList:any=[]
   showList:any=[]
   // cinemaLocationList:any=[]
-  constructor(private srv:CommonService) { }
+  constructor(private srv:CommonService,  public auth:AuthService) { }
 
   getAllMovies(){
     this.srv.getMovies()
@@ -56,10 +56,10 @@ export class AdminComponent implements OnInit {
     this.srv.getCinemas()
     .subscribe({
       next: (res) => {
-        for(let item of res){
-          this.cinemaList.push(item)
-        }
-        // console.log('success',res)
+        // for(let item of res){
+        //   this.cinemaList.push(item)
+        // }
+        console.log('success',res)
       },
       error: (err) => { console.log(err) 
         alert("invalid movie details")}
@@ -95,7 +95,19 @@ export class AdminComponent implements OnInit {
   // }
 
   ngOnInit(): void {
-    
+    this.auth.getUserDetails()
+    .subscribe({
+      next: (res) => {
+        // for(let item of res){
+        //   this.showList.push(item)
+        // }
+        this.role=res.role
+        this.name=res.first_name+' '+res.last_name
+        console.log('success',this.name)
+      },
+      error: (err) => { console.log(err) 
+        alert("invalid movie details")}
+    })
   }
 
 }

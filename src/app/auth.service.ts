@@ -4,16 +4,19 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { map, Observable } from 'rxjs';
 import { User } from './userInterface';
-
+import {JwtHelperService} from '@auth0/angular-jwt'
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+  public jwtHelper:JwtHelperService = new JwtHelperService()
 
-private isLoggedIn:boolean=false
+private isLoggedIn!:boolean
 
 public getisLoggedin(){
-  return this.isLoggedIn
+  const tok=localStorage.getItem('token')
+  return !!tok && !this.jwtHelper.isTokenExpired(tok)
+  // return this.isLoggedIn
 }
 public setisLoggedin(value:any){
   this.isLoggedIn=value
@@ -26,19 +29,20 @@ public setRole(value:string){
 public getRole(){
   return this.role
 }
-private userId=localStorage.getItem('id')
+private userId!:any
 public isAdmin(){
   // console.log(this.getRole())
-    if(this.getRole()==='admin'){
-      // console.log('in if')
-      return true
-    }
-    else{
-      return false
-    }
+  if(localStorage.getItem('role')=='admin')
+  {
+    return true;
+  }
+  else
+  {
+    return false;
+  }
 }
 public getUserId(){
-  return this.userId
+  return localStorage.getItem('id')
 }
 
 getToken(){
@@ -81,6 +85,12 @@ getToken(){
   }
   public set_showId(value: string) {
     this.showId = value;
+  }
+  public get_userId() {
+    return this.userId;
+  }
+  public set_userId(value: string) {
+    this.userId = value;
   }
   // private _email!: string;
   // public get email(): string {
@@ -134,10 +144,23 @@ getToken(){
     return this.http.get<any>(this.url+'/showtime/'+id)
   }
 
+  getUserDetails(){
+    return this.http.get<any>(this.url+'/'+this.getUserId())
+  }
+
+  getReservations(){
+    return this.http.get<any>(this.url+'/reservation/'+this.getUserId())
+  }
+
+  getAllReservations(){
+    return this.http.get<any>(this.url+'/reservation/all')
+  }
+
   book(id:string,seats:any){
     const obj={
       id:id,
-      seats:seats
+      seats:seats,
+      userId:this.userId
     }
     return this.http.post(this.url+'/showtime/book', obj)
     // http://localhost:9000/showtime/book
@@ -179,16 +202,7 @@ getToken(){
       email: email,
       password: password
     };
-    return this.http.post(this.url+'/register',obj).subscribe({
-      next: (res) => {
-        console.log(res)
-        alert("registered")
-        this.router.navigate(['/user/login'])
-      },
-      error: (err) => { console.log(err) 
-        alert("invalid details")}
-    })
-    console.log(obj)
+    return this.http.post(this.url+'/register',obj)
   }
 
   // displayshows(location:string, movie:string){

@@ -1,13 +1,57 @@
 <!-- <p>location works!</p> -->
-<form [formGroup]="locationForm" (ngSubmit)="addlocation()">
+<!-- <form [formGroup]="locationForm" (ngSubmit)="addlocation()">
     <h2>Locations</h2>
     <input type="text" placeholder="Enter location" class="inp" formControlName="city"/>
     <div class="btns">
-    <!-- <button (click)="goToLogin()">Add Location</button> -->
     <button [disabled]="!locationForm.valid">Add Location</button>
     </div>
-</form>
-<!-- <button (click)="getAllLocations()">Get all locations</button> -->
-<ul *ngFor="let list of locationList">
-    <li>{{list._id}} : {{ list.city }}</li>
-</ul>
+</form> -->
+
+<div >
+
+    <form class="form-inline" [formGroup]="locationForm" (ngSubmit)="addlocation()">
+      <h5 style="color: goldenrod; padding: 10px;">Add Location</h5>
+        <!-- <label class="sr-only" for="inlineFormInputName2">City</label> -->
+        <input style="width: auto;" type="text" class="form-control mb-2 mr-sm-2" id="inlineFormInputName2" formControlName="city" placeholder="Enter location">
+      
+        <button style="margin-left: 1%;" type="submit" class="btn btn-primary mb-2" [disabled]="!locationForm.valid">Add Location</button>
+      </form>
+
+      <form class="form-inline" [formGroup]="updateForm" (ngSubmit)="update()" *ngIf="show==true">
+        <h5 style="color: goldenrod; padding: 10px;">Update City</h5>
+        <!-- <label class="sr-only" for="inlineFormInputName2">City</label> -->
+        <input style="width: auto;" type="text" class="form-control mb-2 mr-sm-2" id="inlineFormInputName3" formControlName="city" value="{{result.city}}" placeholder="Enter location">
+      
+        <button style="margin-left: 1%;" type="submit" class="btn btn-primary mb-2" [disabled]="!updateForm.valid">Update</button>
+        <button style="margin-left: 1%;" type="submit" class="btn btn-primary mb-2"  (click)="close()">Close</button>
+      </form>
+    
+      
+
+    <div class="container" style="max-width: fit-content;margin-top: 3%;">
+
+      <div *ngIf="locationList.length==0">
+        <h4>There are No Cities as of Now, Please Fill the details and click Add</h4>
+      </div>
+
+        <table class="table table-bordered table-striped table-dark" *ngIf="locationList.length>0">
+          <thead>
+          <tr>
+            <th>City</th>
+            <th>Action</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr  style="color: white;" *ngFor="let result of locationList">
+            <td><span>{{result.city}}</span></td>
+            <td>
+                <button class="btn btn-sm btn-warning" (click)="edit(result._id)">
+                  <i class="fa fa-edit"></i>Edit</button>
+                <button class="btn btn-sm btn-danger" (click)="delete(result._id)">
+                  <i class="fa fa-remove"></i>Delete</button>
+              </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+</div>
