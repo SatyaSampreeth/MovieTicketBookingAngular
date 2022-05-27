@@ -18,6 +18,11 @@ export class UserComponent implements OnInit {
   result:any
   constructor(private formBuilder:FormBuilder, private http:HttpClient, private srv:CommonService) { }
 
+
+    // url:any = 'http://localhost:9000';
+    // url:any="http://52.66.150.213:9000"
+    url:any="http://3.111.213.214:9000"
+
   adduser() {
     console.log(this.userForm.value)
     const obj ={
@@ -27,7 +32,8 @@ export class UserComponent implements OnInit {
       password: this.userForm.value.password,
       // role:this.userForm.value.role
     };
-    return this.http.post("http://localhost:9000/register",obj)
+    // return this.http.post("http://localhost:9000/register",obj)
+    this.srv.addUser(obj)
     .subscribe({
       next: (res) => {
         console.log(res)
@@ -43,7 +49,9 @@ export class UserComponent implements OnInit {
 
 delete(value:any){
   console.log(value) 
-  return this.http.delete("http://localhost:9000/"+ value)
+  // return this.http.delete("http://localhost:9000/"+ value)
+  return this.http.delete(this.url+"/"+ value)
+  // this.srv.delUser(value)
   .subscribe({
     next: (res) => {
       console.log(res)
@@ -84,8 +92,11 @@ update(){
   console.log(this.updateForm.value.role)
   const obj ={
     role: this.updateForm.value.role,
+    // id: this.id
   };
-  return this.http.patch<any>("http://localhost:9000/"+this.id,obj)
+  // return this.http.patch<any>("http://localhost:9000/"+this.id,obj)
+  return this.http.patch<any>(this.url+"/"+this.id,obj)
+  // this.srv.editUser(obj)
   .subscribe({
     next: (res) => {
       // for(let item of res){
@@ -125,7 +136,10 @@ update(){
     .subscribe({
       next: (res) => {
         for(let item of res){
-          this.userList.push(item)
+          if(item._id!=localStorage.getItem('id')){
+            this.userList.push(item)
+          }
+          
         }
         console.log('success',res,this.userList)
       },

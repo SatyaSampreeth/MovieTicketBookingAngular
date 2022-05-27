@@ -16,6 +16,8 @@ export class NavbarComponent implements OnInit {
     localStorage.removeItem('token')
     localStorage.removeItem('id')
     localStorage.removeItem('role')
+    localStorage.removeItem('refresh')
+    localStorage.removeItem('expiration')
     this.auth.setisLoggedin(false)
     this.router.navigate([''])
   }

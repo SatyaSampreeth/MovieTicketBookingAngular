@@ -9,22 +9,9 @@
 
 <div >
 
-    <form class="form-inline" [formGroup]="locationForm" (ngSubmit)="addlocation()">
-      <h5 style="color: goldenrod; padding: 10px;">Add Location</h5>
-        <!-- <label class="sr-only" for="inlineFormInputName2">City</label> -->
-        <input style="width: auto;" type="text" class="form-control mb-2 mr-sm-2" id="inlineFormInputName2" formControlName="city" placeholder="Enter location">
-      
-        <button style="margin-left: 1%;" type="submit" class="btn btn-primary mb-2" [disabled]="!locationForm.valid">Add Location</button>
-      </form>
 
-      <form class="form-inline" [formGroup]="updateForm" (ngSubmit)="update()" *ngIf="show==true">
-        <h5 style="color: goldenrod; padding: 10px;">Update City</h5>
-        <!-- <label class="sr-only" for="inlineFormInputName2">City</label> -->
-        <input style="width: auto;" type="text" class="form-control mb-2 mr-sm-2" id="inlineFormInputName3" formControlName="city" value="{{result.city}}" placeholder="Enter location">
-      
-        <button style="margin-left: 1%;" type="submit" class="btn btn-primary mb-2" [disabled]="!updateForm.valid">Update</button>
-        <button style="margin-left: 1%;" type="submit" class="btn btn-primary mb-2"  (click)="close()">Close</button>
-      </form>
+
+
     
       
 
@@ -54,4 +41,31 @@
           </tbody>
         </table>
       </div>
+
+      <form class="form-inline border border-white rounded container " style="padding: 2%;max-width: fit-content" [formGroup]="updateForm" (ngSubmit)="update()" *ngIf="show==true">
+        <h5 style="color: goldenrod; padding: 10px;">Update City</h5>
+        <!-- <label class="sr-only" for="inlineFormInputName2">City</label> -->
+        <input style="width: auto;" type="text" class="form-control mb-2 mr-sm-2" id="inlineFormInputName3" formControlName="city" value="{{result.city}}" placeholder="Enter location">
+      
+        <button style="margin-left: 1%;" type="submit" class="btn btn-primary mb-2" [disabled]="!updateForm.valid">Update</button>
+        <button style="margin-left: 1%;" type="submit" class="btn btn-primary mb-2"  (click)="close()">Close</button>
+      </form>
+
+      <form class="form-inline border border-white rounded container " style="padding: 2%;max-width: fit-content"  [formGroup]="locationForm" (ngSubmit)="addlocation()">
+        <h5 style="color: goldenrod; padding: 10px;">Add Location</h5>
+        <div class="row">
+          <div class="col">
+  
+            <input style="width: auto;" type="text" class="form-control mb-2 mr-sm-2" id="inlineFormInputName2" formControlName="city" placeholder="Enter location">
+            <button style="margin-left: 1%;" type="submit" class="btn btn-primary mb-2" [disabled]="!locationForm.valid">Add Location</button>
+          </div>
+  
+        </div>
+          <!-- <label class="sr-only" for="inlineFormInputName2">City</label> -->
+  
+        
+  
+        </form>
+
+
 </div>

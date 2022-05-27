@@ -27,9 +27,10 @@ export class RoleGuard implements CanActivate {
       return true;
     } else{
       this.toast.error({detail:"Access Denied",summary:"Please Login to Access",duration:5000})
-      localStorage.removeItem('token')
-      localStorage.removeItem('id'),
-      localStorage.removeItem('role')
+      // localStorage.removeItem('token')
+      // localStorage.removeItem('id'),
+      // localStorage.removeItem('role')
+      // localStorage.removeItem('refresh')
       this.router.navigate(['/users/login'])
       return false;
     }

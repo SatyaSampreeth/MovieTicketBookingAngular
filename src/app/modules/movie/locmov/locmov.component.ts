@@ -45,6 +45,8 @@ export class LocmovComponent implements OnInit {
 
   onChangeLocation(){
     this.movieList = []
+    this.cinemaList = []
+    this.showList=[]
     this.movieImg=[]
     this.cinemaImg=[]
     this.showImg=[]
@@ -81,10 +83,27 @@ export class LocmovComponent implements OnInit {
   //   this.router.navigateByUrl('/select');
   // }
 
+selectMov(value:any){
+  this.bookForm.value.movie=value
+  console.log(this.bookForm.value.movie)
+  this.onChangeMovie()
+}
+selectCin(value:any){
+  this.bookForm.value.cinema=value
+  console.log(this.bookForm.value.cinema)
+  this.onChangeCinema()
+}
+selectSh(value:any){
+  this.bookForm.value.show=value
+  console.log(this.bookForm.value.show)
+  this.onChangeShow()
+}
+
   onChangeMovie(){
     this.cinemaList = []
     this.movieImg=[]
     this.cinemaImg=[]
+    this.showList=[]
     this.showImg=[]
     this.total=0
     this.result={}

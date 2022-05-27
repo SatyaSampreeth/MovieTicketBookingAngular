@@ -1,6 +1,7 @@
 .container{
     margin-top:5%;
     color: goldenrod;
+    /* overflow: scroll; */
   }
   th{
       color: goldenrod;
@@ -36,4 +37,9 @@ element.style {
     --bs-table-hover-color: #fff;
     color: #fff;
     /* border-color: #373b3e; */
+}
+@media screen and (max-width: 700px) {
+    .container{
+        overflow: scroll;
+    }
 }

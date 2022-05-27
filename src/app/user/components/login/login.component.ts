@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { AuthService } from 'src/app/auth.service';
 import { CommonService } from 'src/app/common.service';
 import { NgToastService } from 'ng-angular-popup';
+import  jwt_decode from 'jwt-decode'
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -31,8 +32,13 @@ export class LoginComponent implements OnInit {
               // alert("logged in")
               if(this.result.token){
                 localStorage.setItem('token' , this.result.token)
+                
                 localStorage.setItem('id',this.result._id)
                 localStorage.setItem('role',this.result.role)
+                localStorage.setItem('refresh' , this.result.refreshtoken)
+                console.log('refresh set',localStorage.getItem('refresh'))
+                const decryptedUser=jwt_decode(this.result.token);
+                localStorage.setItem('expiration',Object(decryptedUser).exp)
                 this.auth.set_userId(this.result._id)
                 // console.log('success',this.result.token)
                 this.router.navigate(['/home'])

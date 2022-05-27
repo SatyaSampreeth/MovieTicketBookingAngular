@@ -26,6 +26,10 @@ export class ShowComponent implements OnInit {
   show:boolean=false
   result:any={}
 
+      // url:any = 'http://localhost:9000';
+      // url:any="http://52.66.150.213:9000"
+      url:any="http://3.111.213.214:9000"
+
   addshow() {
     console.log(this.showForm.value)
     console.log(this.movieListId[this.movieList.indexOf(this.showForm.value.movieId)])
@@ -40,7 +44,8 @@ export class ShowComponent implements OnInit {
       cinemaId: this.cinemaListId[this.cinemaList.indexOf(this.showForm.value.cinemaId)],
       cityId: this.locationListId[this.locationList.indexOf(this.showForm.value.cityId)],
     };
-    return this.http.post("http://localhost:9000/showtime/add",obj)
+    // return this.http.post("http://localhost:9000/showtime/add",obj)
+    return this.http.post(this.url+"/showtime/add",obj)
     .subscribe({
       next: (res) => {
         console.log(res)
@@ -75,7 +80,8 @@ onChangeLocation(){
 
 delete(value:any){
   console.log(value) 
-  return this.http.delete("http://localhost:9000/showtime/"+ value)
+  // return this.http.delete("http://localhost:9000/showtime/"+ value)
+  return this.http.delete(this.url+"/showtime/"+ value)
   .subscribe({
     next: (res) => {
       console.log('deleted',res)
@@ -120,7 +126,8 @@ update(){
     // cityId: this.locationListId[this.locationList.indexOf(this.updateForm.value.cityId)] || this.result.cityId,
   };
   console.log('sent',obj)
-  return this.http.patch<any>("http://localhost:9000/showtime/"+this.id,obj)
+  // return this.http.patch<any>("http://localhost:9000/showtime/"+this.id,obj)
+  return this.http.patch<any>(this.url+"/showtime/"+this.id,obj)
   .subscribe({
     next: (res) => {
       // for(let item of res){

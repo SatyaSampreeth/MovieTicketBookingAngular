@@ -2,26 +2,7 @@
 
 <div >
 
-    <form class="form-inline" [formGroup]="cinemaForm" (ngSubmit)="addcinema()">
-      <h5 style="color: goldenrod; padding: 10px;">Add Cinemas</h5>
-          <div class="row">
-            <div class="col">
-                <input style="width: auto;" type="text" class="form-control mb-2 mr-sm-2" placeholder="Enter cinema name" formControlName="name">
-                <input style="width: auto;" type="text" class="form-control mb-2 mr-sm-2" placeholder="Enter ticketPrice(Rs)"formControlName="ticketPrice">
-                
-            </div>
-            <div class="col">
-                <label for="location">Location:</label>  
-                <select id="location" formControlName="city" class="form-control mb-2 mr-sm-2">  
-                    <option disabled>Select Location</option>  
-                    <option>Choose Location</option>  
-                    <option *ngFor="let loc of locationList">{{loc}}</option>  
-                </select>
-                <input style="width: auto;" type="text" class="form-control mb-2 mr-sm-2" formControlName="img" placeholder="Enter Image URL">
-            </div>
-          </div>          
-        <button style="margin-left: 1%;" type="submit" class="btn btn-primary mb-2" [disabled]="!cinemaForm.valid">Add Cinema</button>
-      </form>
+
     
      
        
@@ -59,7 +40,7 @@
         </table>
       </div>
 
-      <form class="form-inline" [formGroup]="updateForm" (ngSubmit)="update()" *ngIf="show==true">
+      <form class="form-inline border border-white rounded container " style="padding: 2%;max-width: fit-content"  [formGroup]="updateForm" (ngSubmit)="update()" *ngIf="show==true">
         <h5 style="color: goldenrod; padding: 10px;">Update Cinema Name, ticketPrice or Logo</h5>
         <div class="row">
           <div class="col">
@@ -79,7 +60,28 @@
           </div>
         </div>          
 
-    </form> 
+    </form>
+    
+    <form class="form-inline border border-white rounded container " style="padding: 2%;max-width: fit-content"  [formGroup]="cinemaForm" (ngSubmit)="addcinema()">
+      <h5 style="color: goldenrod; padding: 10px;">Add Cinemas</h5>
+          <div class="row">
+            <div class="col">
+                <input style="width: auto;" type="text" class="form-control mb-2 mr-sm-2" placeholder="Enter cinema name" formControlName="name">
+                <input style="width: auto;" type="text" class="form-control mb-2 mr-sm-2" placeholder="Enter ticketPrice(Rs)"formControlName="ticketPrice">
+                
+            </div>
+            <div class="col">
+                <label for="location">Location:</label>  
+                <select id="location" formControlName="city" class="form-control mb-2 mr-sm-2">  
+                    <option disabled>Select Location</option>  
+                    <option>Choose Location</option>  
+                    <option *ngFor="let loc of locationList">{{loc}}</option>  
+                </select>
+                <input style="width: auto;" type="text" class="form-control mb-2 mr-sm-2" formControlName="img" placeholder="Enter Image URL">
+            </div>
+          </div>          
+        <button style="margin-left: 1%;" type="submit" class="btn btn-primary mb-2" [disabled]="!cinemaForm.valid">Add Cinema</button>
+      </form>
 
 </div>
 

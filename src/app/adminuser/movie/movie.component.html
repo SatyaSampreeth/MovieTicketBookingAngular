@@ -2,39 +2,8 @@
 
 <div >
 
-    <form class="form-inline" [formGroup]="movieForm" (ngSubmit)="addmovie()">
-      <h5 style="color: goldenrod; padding: 10px;">Add Movies</h5>
-          <div class="row">
-            <div class="col">
-                <input style="width: auto;" type="text" class="form-control mb-2 mr-sm-2" formControlName="title" placeholder="Enter title">
-                <input style="width: auto;" type="text" class="form-control mb-2 mr-sm-2" formControlName="genre" placeholder="Enter genre">
-            </div>
-            <div class="col">
-                <input style="width: auto;" type="text" class="form-control mb-2 mr-sm-2" formControlName="language" placeholder="Enter language">
-                <input style="width: auto;" type="text" class="form-control mb-2 mr-sm-2" formControlName="img" placeholder="Enter Image URL">
-            </div>
-          </div>          
-        <button style="margin-left: 1%;" type="submit" class="btn btn-primary mb-2" [disabled]="!movieForm.valid">Add Movie</button>
-      </form>
-    
-      <form class="form-inline" [formGroup]="updateForm" (ngSubmit)="update()" *ngIf="show==true">
-        <h5 style="color: goldenrod; padding: 10px;">Update Movie Title, Language or Genre</h5>
-        <div class="row">
-          <div class="col">
-              <input style="width: auto;" type="text" class="form-control mb-2 mr-sm-2" formControlName="title" value="{{result.title}}" placeholder="Enter title">
-              <input style="width: auto;" type="text" class="form-control mb-2 mr-sm-2" formControlName="genre" value="{{result.genre}}" placeholder="Enter genre">
-              <button  type="submit" class="btn btn-primary mb-2">Update</button>
-          </div>
-          <div class="col">
-              <input style="width: auto;" type="text" class="form-control mb-2 mr-sm-2" formControlName="language" value="{{result.language}}" placeholder="Enter language">
-              <input style="width: auto;" type="text" class="form-control mb-2 mr-sm-2" formControlName="img" value="{{result.img}}" placeholder="Enter Image URL">
-              <button  type="submit" class="btn btn-primary mb-2"  (click)="close()">Close</button>
-          </div>
-          <div class="col">
-            
-          </div>
-        </div>     
-    </form>  
+
+        
 
     <div class="container" style="max-width: fit-content;margin-top: 3%;">
 
@@ -68,6 +37,43 @@
           </tbody>
         </table>
       </div>
+
+      <form class="form-inline border border-white rounded container " style="padding: 2%;max-width: fit-content"  [formGroup]="updateForm" (ngSubmit)="update()" *ngIf="show==true">
+        <h5 style="color: goldenrod; padding: 10px;">Update Movie Title, Language or Genre</h5>
+        <div class="row">
+          <div class="col">
+              <input style="width: auto;" type="text" class="form-control mb-2 mr-sm-2" formControlName="title" value="{{result.title}}" placeholder="Enter title">
+              <input style="width: auto;" type="text" class="form-control mb-2 mr-sm-2" formControlName="genre" value="{{result.genre}}" placeholder="Enter genre">
+              <button  type="submit" class="btn btn-primary mb-2">Update</button>
+          </div>
+          <div class="col">
+              <input style="width: auto;" type="text" class="form-control mb-2 mr-sm-2" formControlName="language" value="{{result.language}}" placeholder="Enter language">
+              <input style="width: auto;" type="text" class="form-control mb-2 mr-sm-2" formControlName="img" value="{{result.img}}" placeholder="Enter Image URL">
+              <button  type="submit" class="btn btn-primary mb-2"  (click)="close()">Close</button>
+          </div>
+          <div class="col">
+            
+          </div>
+        </div>     
+    </form>
+
+    <form class="form-inline border border-white rounded container " style="padding: 2%;max-width: fit-content"  [formGroup]="movieForm" (ngSubmit)="addmovie()">
+      <h5 style="color: goldenrod; padding: 10px;">Add Movies</h5>
+          <div class="row">
+            <div class="col">
+                <input style="width: auto;" type="text" class="form-control mb-2 mr-sm-2" formControlName="title" placeholder="Enter title">
+                <input style="width: auto;" type="text" class="form-control mb-2 mr-sm-2" formControlName="genre" placeholder="Enter genre">
+            </div>
+            <div class="col">
+                <input style="width: auto;" type="text" class="form-control mb-2 mr-sm-2" formControlName="language" placeholder="Enter language">
+                <input style="width: auto;" type="text" class="form-control mb-2 mr-sm-2" formControlName="img" placeholder="Enter Image URL">
+            </div>
+          </div>          
+        <button style="margin-left: 1%;" type="submit" class="btn btn-primary mb-2" [disabled]="!movieForm.valid">Add Movie</button>
+      </form>
+    
+
+
 </div>
 
 

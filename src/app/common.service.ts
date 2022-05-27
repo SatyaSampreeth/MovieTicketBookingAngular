@@ -7,7 +7,9 @@ import {environment} from "../environments/environment";
 })
 export class CommonService {
 
-  url:any = 'http://localhost:9000';
+  // url:any = 'http://localhost:9000';
+  // url:any="http://52.66.150.213:9000"
+  private url:string="http://3.111.213.214:9000"
   constructor(private http:HttpClient) { }
 
   getUsers(){
@@ -53,5 +55,16 @@ export class CommonService {
   getCinemasByLoc(value:any){
     return this.http.get<any>(this.url+'/cinema/'+value)
   }
+
+  addUser(value:any){
+    return this.http.post<any>(this.url+"/register",value)
+  }
+  delUser(value:any){
+    return this.http.delete(this.url+ value)
+  }
+  editUser(value:any){
+    return this.http.patch<any>(this.url+value.id,value.role)
+  }
+
 
 }

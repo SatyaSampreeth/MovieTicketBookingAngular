@@ -99,7 +99,8 @@
         <h1>{{movie.title | titlecase}}</h1> 
         <h2>{{movie.language | titlecase}}</h2>
         <h3>{{movie.genre | titlecase}}</h3>
-        <!-- <button id="book" (click)="select(movie._id)">Select</button> -->
+
+        <!-- <button (click)="selectMov(movie.title)">Select</button> -->
       </div>
     </div>
     </div>
@@ -118,7 +119,7 @@
         <h1>{{cinema.name | titlecase}}</h1> 
         <h2>TicketPrice: {{cinema.ticketPrice}}</h2>
         <!-- <h3>{{movie.genre | titlecase}}</h3> -->
-        <!-- <button id="book" (click)="select(movie._id)">Select</button> -->
+        <!-- <button (click)="selectCin(cinema.name)">Select</button> -->
       </div>
     </div>
     </div>
@@ -136,7 +137,7 @@
         <h1>{{show.showtime | titlecase}}</h1> 
         <h2>Seats Available: {{show.seatsAvailable}}</h2>
         <!-- <h3>{{movie.genre | titlecase}}</h3> -->
-        <!-- <button id="book" (click)="select(movie._id)">Select</button> -->
+        <!-- <button id="book" (click)="selectSh(show.id)">Select</button> -->
       </div>
     </div>
     </div>

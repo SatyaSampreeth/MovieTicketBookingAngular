@@ -21,9 +21,10 @@ export class CinemaComponent implements OnInit {
   show:boolean=false
   result:any={}
 
-  // getAllCinemas(){
-    
-  // }
+
+    // url:any = 'http://localhost:9000';
+    // url:any="http://52.66.150.213:9000"
+    url:any="http://3.111.213.214:9000"
   
   addcinema() {
     let id= this.locationList.indexOf(this.cinemaForm.value.city)
@@ -35,7 +36,8 @@ export class CinemaComponent implements OnInit {
       img:this.cinemaForm.value.img
     };
     console.log(obj)
-    return this.http.post("http://localhost:9000/cinema/add",obj)
+    // return this.http.post("http://localhost:9000/cinema/add",obj)
+    return this.http.post(this.url+"/cinema/add",obj)
     .subscribe({
       next: (res) => {
         console.log(res)
@@ -51,7 +53,8 @@ export class CinemaComponent implements OnInit {
 
 delete(value:any){
   console.log(value) 
-  return this.http.delete("http://localhost:9000/cinema/"+ value)
+  // return this.http.delete("http://localhost:9000/cinema/"+ value)
+  return this.http.delete(this.url+"/cinema/"+ value)
   .subscribe({
     next: (res) => {
       console.log(res)
@@ -97,7 +100,8 @@ update(){
     cityId: this.locationId[this.locationList.indexOf(this.updateForm.value.city)] || this.result.city,
     img:this.updateForm.value.img || this.result.img
   };
-  return this.http.patch<any>("http://localhost:9000/cinema/"+this.id,obj)
+  // return this.http.patch<any>("http://localhost:9000/cinema/"+this.id,obj)
+  return this.http.patch<any>(this.url+"/cinema/"+this.id,obj)
   .subscribe({
     next: (res) => {
       // for(let item of res){

@@ -14,8 +14,13 @@ export class AuthService {
 private isLoggedIn!:boolean
 
 public getisLoggedin(){
-  const tok=localStorage.getItem('token')
-  return !!tok && !this.jwtHelper.isTokenExpired(tok)
+  const tok:any=localStorage.getItem('token')
+  // if(tok && this.jwtHelper.isTokenExpired(tok)){
+  //   this.renewToken(localStorage.getItem('refresh'))
+  //   return !!tok && !this.jwtHelper.isTokenExpired(tok)
+  // }
+
+  return !!tok
   // return this.isLoggedIn
 }
 public setisLoggedin(value:any){
@@ -113,7 +118,9 @@ getToken(){
   // public set token(value: string) {
   //   this._token = value;
   // }
-  private url:string="http://localhost:9000"
+  // private url:string="http://localhost:9000"
+  // private url:string="http://52.66.150.213:9000"
+  private url:string="http://3.111.213.214:9000"
   details!:any 
   constructor(private http:HttpClient,private router:Router) {}
   getUsers():Observable<User>{
@@ -121,6 +128,7 @@ getToken(){
   }
 
   getLocations(){
+    // this.getisLoggedin()
     return this.http.get<any>(this.url+'/location/all')
   }
 
@@ -129,14 +137,17 @@ getToken(){
   }
 
   getMoviesbyLocation(city:string){
-    return this.http.get<any>(this.url+'/movie/'+city)
+    // this.getisLoggedin()
+    return this.http.get<any>(this.url+'/movie/all/'+city)
   }
 
   getCinemasbyLocMov(city:string,title:string){
+    // this.getisLoggedin()
     return this.http.get<any>(this.url+'/cinema/'+city+'/'+title)
   }
 
   getShowsbyLocMovCin(city:string,title:string,name:string){
+    // this.getisLoggedin()
     return this.http.get<any>(this.url+'/showtime/'+city+'/'+title+'/'+name)
   }
 
@@ -191,9 +202,34 @@ getToken(){
     // console.log(obj)
   }
 
+  // renewToken(value:any){
+  //   const obj={
+  //     refreshtoken:value
+  //   }
+  //   return this.http.post<any>(this.url+'/renewtoken', obj)
+  //       .subscribe({
+  //     next: (res) => {
+  //       console.log(res,'called')
+  //       localStorage.setItem('token' , res.token)
+  //       localStorage.setItem('id',res._id)
+  //       localStorage.setItem('role',res.role)
+  //       localStorage.setItem('refresh' , res.refreshtoken)
+  //       // alert("detail")
+  //       // this.router.navigate(['book'])
+  //     },
+  //     error: (err) => { console.log(err) 
+  //       alert("invalid details")}
+  //   })
+  // }
   // isLoggedIn():any{
   //   return this.getisLoggedin()
   // }
+
+
+  refresh(value:any):Observable<any>{
+    console.log("value here", value)
+    return this.http.post<any>(this.url+'/renewtoken',{value})
+  }
 
   signupUser(fname:string,lname:string,email:string,password:string){
     const obj ={

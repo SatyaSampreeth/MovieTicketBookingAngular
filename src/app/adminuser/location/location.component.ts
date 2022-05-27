@@ -17,6 +17,10 @@ export class LocationComponent implements OnInit {
   id:any
   show:boolean=false
   result:any={}
+
+      // url:any = 'http://localhost:9000';
+      // url:any="http://52.66.150.213:9000"
+      url:any="http://3.111.213.214:9000"
   // getAllLocations(){
     
   // }
@@ -26,7 +30,8 @@ export class LocationComponent implements OnInit {
     const obj ={
       city: this.locationForm.value.city,
     };
-    return this.http.post<any>("http://localhost:9000/location/add",obj)
+    // return this.http.post<any>("http://localhost:9000/location/add",obj)
+    return this.http.post<any>(this.url+"/location/add",obj)
     .subscribe({
       next: (res) => {
         // for(let item of res){
@@ -34,6 +39,7 @@ export class LocationComponent implements OnInit {
         // }
         
         this.locationList.push(res)
+        this.ngOnInit()
         console.log(this.locationList)
         // alert("logged in")
         // this.router.navigateByUrl('book')
@@ -45,7 +51,8 @@ export class LocationComponent implements OnInit {
 
 delete(value:any){
   console.log(value) 
-  return this.http.delete("http://localhost:9000/location/"+ value)
+  // return this.http.delete("http://localhost:9000/location/"+ value)
+  return this.http.delete(this.url+"/location/"+ value)
   .subscribe({
     next: (res) => {
       console.log(res)
@@ -86,7 +93,8 @@ update(){
   const obj ={
     city: this.updateForm.value.city,
   };
-  return this.http.patch<any>("http://localhost:9000/location/"+this.id,obj)
+  // return this.http.patch<any>("http://localhost:9000/location/"+this.id,obj)
+  return this.http.patch<any>(this.url+"/location/"+this.id,obj)
   .subscribe({
     next: (res) => {
       // for(let item of res){

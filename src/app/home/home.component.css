@@ -8,8 +8,9 @@
 
 
 img{
-    width: 100vw;
-    height: 92vh;
+    width: 100vw; 
+     height: 90vh;
+    /* margin: 0%; */
     
 }
 .back{
@@ -24,6 +25,4 @@ text-align: center;
 /* padding-bottom: 250px; */
 /* color: rgb(209, 141, 141); */
 /* font-family:Brush Script MT, Brush Script Std, cursive ; */
-
-
 }

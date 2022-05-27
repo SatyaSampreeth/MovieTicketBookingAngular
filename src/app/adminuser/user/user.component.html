@@ -1,46 +1,7 @@
 
 <div >
 
-    <form class="form-inline" [formGroup]="userForm" (ngSubmit)="adduser()">
-          <div class="row">
-            <div class="col">
-                <input style="width: auto;" type="text" class="form-control mb-2 mr-sm-2" formControlName="fname" placeholder="Enter first name">
-                <input style="width: auto;" type="email" class="form-control mb-2 mr-sm-2" formControlName="email" placeholder="Enter email">
-            </div>
-            <div class="col">
-                <input style="width: auto;" type="text" class="form-control mb-2 mr-sm-2" formControlName="lname" placeholder="Enter last name">
-                <input style="width: auto;" type="password" class="form-control mb-2 mr-sm-2" formControlName="password" placeholder="Enter password">
-            </div>
-          </div>          
-        <button style="margin-left: 1%;" type="submit" class="btn btn-primary mb-2" [disabled]="!userForm.valid">Add User</button>
-      </form>
 
-      <form class="form-inline" [formGroup]="updateForm" (ngSubmit)="update()" *ngIf="show==true">
-        <h5 style="color: goldenrod; padding: 10px;">Update Role</h5>
-        <!-- <label class="sr-only" for="inlineFormInputName2">City</label> -->
-        <div class="row">
-          <div class="col">
-            <label for="role">Role:</label>  
-            <select id="role" formControlName="role" class="form-control mb-2 mr-sm-2">  
-                <option disabled>Select Role</option>  
-                <!-- <option>Choose Role</option>   -->
-                <option value="guest">guest</option>  
-                <option value="admin">admin</option>
-            </select>
-          </div>
-          <div class="col">
-            <button style="margin-left: 1%;" type="submit" class="btn btn-primary mb-2" [disabled]="!updateForm.valid">Update</button>
-          </div>
-          <div class="col">
-            <button style="margin-left: 1%;" type="submit" class="btn btn-primary mb-2"  (click)="close()">Close</button> 
-          </div>
-          
-        
-
-        </div>
-    
-
-    </form>
     
     <div class="container" style="max-width: fit-content;margin-top: 3%;">
 
@@ -74,4 +35,53 @@
           </tbody>
         </table>
       </div>
+
+
+
+    <form  class="form-inline border border-white rounded container " style="padding: 2%;max-width: fit-content" [formGroup]="updateForm" (ngSubmit)="update()" *ngIf="show==true">
+      <h5 style="color: goldenrod; padding: 10px;">Update Role</h5>
+      <!-- <label class="sr-only" for="inlineFormInputName2">City</label> -->
+      <div class="row">
+        <div class="col">
+          <label for="role">Role:</label>  
+          <select id="role" formControlName="role" class="form-control mb-2 mr-sm-2">  
+              <option disabled>Select Role</option>  
+              <!-- <option>Choose Role</option>   -->
+              <option value="guest">guest</option>  
+              <option value="admin">admin</option>
+          </select>
+        </div>
+        <div class="col">
+          <button style="margin-left: 1%;" type="submit" class="btn btn-primary mb-2" [disabled]="!updateForm.valid">Update</button>
+        </div>
+        <div class="col">
+          <button style="margin-left: 1%;" type="submit" class="btn btn-primary mb-2"  (click)="close()">Close</button> 
+        </div>
+        
+      
+
+      </div>
+  
+
+  </form>
+
+  <form class="form-inline border border-white rounded container" style="    padding: 2%;
+  max-width: fit-content;
+  " [formGroup]="userForm" (ngSubmit)="adduser()">
+
+    <div class="row">
+      <div class="col">
+          <input style="width: auto;" type="text" class="form-control mb-2 mr-sm-2" formControlName="fname" placeholder="Enter first name">
+          <input style="width: auto;" type="email" class="form-control mb-2 mr-sm-2" formControlName="email" placeholder="Enter email">
+      </div>
+      <div class="col">
+          <input style="width: auto;" type="text" class="form-control mb-2 mr-sm-2" formControlName="lname" placeholder="Enter last name">
+          <input style="width: auto;" type="password" class="form-control mb-2 mr-sm-2" formControlName="password" placeholder="Enter password">
+      </div>
+    </div>          
+  <button style="margin-left: 1%;" type="submit" class="btn btn-primary mb-2" [disabled]="!userForm.valid">Add User</button>
+</form>
+
+
+
 </div>

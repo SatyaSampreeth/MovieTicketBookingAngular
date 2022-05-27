@@ -5,11 +5,12 @@ import { Observable } from 'rxjs';
 import { AuthService } from './auth.service';
 // import {JwtHelperService} from '@auth0/angular-jwt'
 import { NgToastService } from 'ng-angular-popup';
+import { JwtHelperService } from '@auth0/angular-jwt';
 @Injectable({
   providedIn: 'root'
 })
 export class AuthGuard implements CanActivate {
-
+  public jwtHelper:JwtHelperService = new JwtHelperService()
   constructor(private router:Router, private auth:AuthService, private toast:NgToastService){}
   canActivate(
     route: ActivatedRouteSnapshot,
@@ -20,11 +21,21 @@ export class AuthGuard implements CanActivate {
       // }
       // // this.router.navigateByUrl('/movie/book')
       // return true;
+      const token:any=localStorage.getItem('token')
+      const ref:any=localStorage.getItem('refresh')
+
+
       if(this.auth.getisLoggedin()){
       // if(localStorage.getItem('token')){
         return true;
-    }else{
+    }
+
+    else{
       this.toast.error({detail:"Access Denied",summary:"Please Login to Access",duration:5000})
+      // localStorage.removeItem('token')
+      // localStorage.removeItem('id'),
+      // localStorage.removeItem('role')
+      // localStorage.removeItem('refresh')
       this.router.navigate(['/users/login'])
       return false;
     }

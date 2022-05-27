@@ -1,27 +1,63 @@
 <!-- <p>navbar works!</p> -->
-<nav>
+<!-- <nav class="menu">
     <div class="logo">
-        <!-- <img src="img.png" alt=""> -->
         <a class="logoname" *ngIf="!auth.getisLoggedin()"   href="">BookMY Seats</a>
         <a *ngIf="auth.getisLoggedin()" routerLink="home"  class="logoname">BookMY Seats</a>
     </div>
-    <ul class="nav-links">
-        <!-- <li><a routerLink="/" routerLinkActive>Home</a></li> -->
-        <li *ngIf="!auth.getisLoggedin()"><a routerLink="users/register">Signup</a></li>
-        <li *ngIf="!auth.getisLoggedin()"><a routerLink="users/login" routerLinkActive>Login</a></li>
-        <li *ngIf="auth.getisLoggedin() && auth.isAdmin()"><a routerLink="adduser">Users</a></li>
-        <li *ngIf="auth.getisLoggedin() && auth.isAdmin()"><a routerLink="addlocation">Location</a></li>
-        <li *ngIf="auth.getisLoggedin() && auth.isAdmin()"><a routerLink="addmovie">Moive</a></li>
-        <li *ngIf="auth.getisLoggedin() && auth.isAdmin()"><a routerLink="addcinema">Theatre</a></li>
-        <li *ngIf="auth.getisLoggedin() && auth.isAdmin()"><a routerLink="addshow">Show</a></li>
-        <li *ngIf="auth.getisLoggedin() && auth.isAdmin()"><a routerLink="bookings">Bookings</a></li>
-        <li *ngIf="auth.getisLoggedin() && !auth.isAdmin()"><a routerLink="movie/book">Book Tickets</a></li>
-        <li *ngIf="auth.getisLoggedin() && !auth.isAdmin()"><a routerLink="bookings">My Bookings</a></li>
-        <li *ngIf="auth.getisLoggedin()"><a style="cursor: pointer;" (click)="logoutUser()">Log Out</a></li>
-        
-       
-    </ul>
-</nav>
+        <ul class="nav-links">
+            <li *ngIf="!auth.getisLoggedin()"><a routerLink="users/register">Signup</a></li>
+            <li *ngIf="!auth.getisLoggedin()"><a routerLink="users/login" routerLinkActive>Login</a></li>
+            <li *ngIf="auth.getisLoggedin() && auth.isAdmin()"><a routerLink="adduser">Users</a></li>
+            <li *ngIf="auth.getisLoggedin() && auth.isAdmin()"><a routerLink="addlocation">Location</a></li>
+            <li *ngIf="auth.getisLoggedin() && auth.isAdmin()"><a routerLink="addmovie">Moive</a></li>
+            <li *ngIf="auth.getisLoggedin() && auth.isAdmin()"><a routerLink="addcinema">Theatre</a></li>
+            <li *ngIf="auth.getisLoggedin() && auth.isAdmin()"><a routerLink="addshow">Show</a></li>
+            <li *ngIf="auth.getisLoggedin() && auth.isAdmin()"><a routerLink="bookings">Bookings</a></li>
+            <li *ngIf="auth.getisLoggedin() && !auth.isAdmin()"><a routerLink="movie/book">Book Tickets</a></li>
+            <li *ngIf="auth.getisLoggedin() && !auth.isAdmin()"><a routerLink="bookings">My Bookings</a></li>
+            <li *ngIf="auth.getisLoggedin()"><a style="cursor: pointer;" (click)="logoutUser()">Log Out</a></li>
+            
+           
+        </ul>
+
+
+</nav> -->
+<!-- <html lang="eng"> -->
+<!-- <head> -->
+    <!-- <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"> -->
+    <!-- <title>Movie Dom</title> -->
+<!-- </head> -->
+<body>
+    <header>
+        <figure class="brand">BookMY Seats</figure>
+        <nav class="menu">
+            <input type="checkbox" id="menuToggle">
+            <label for="menuToggle" class="menu-icon"><i class="fa fa-bars"></i></label>
+            <ul>
+                <a style="width: 50%;" *ngIf="!auth.getisLoggedin()" routerLink="users/register">Signup</a>
+                <a style="width: 50%" *ngIf="!auth.getisLoggedin()" routerLink="users/login" routerLinkActive>Login</a>
+                <a *ngIf="auth.getisLoggedin() && auth.isAdmin()" routerLink="adduser">Users</a>
+                <a *ngIf="auth.getisLoggedin() && auth.isAdmin()" routerLink="addlocation">Location</a>
+                <a *ngIf="auth.getisLoggedin() && auth.isAdmin()" routerLink="addmovie">Movie</a>
+                <a *ngIf="auth.getisLoggedin() && auth.isAdmin()" routerLink="addcinema">Cinema</a>
+                <a *ngIf="auth.getisLoggedin() && auth.isAdmin()"routerLink="addshow">Show</a>
+                <a *ngIf="auth.getisLoggedin() && auth.isAdmin()" routerLink="bookings">Bookings</a>
+                <a *ngIf="auth.getisLoggedin() && !auth.isAdmin()" routerLink="movie/book">Book Tickets</a>
+                <a  *ngIf="auth.getisLoggedin() && !auth.isAdmin()" routerLink="bookings">My Bookings</a>
+                <a *ngIf="auth.getisLoggedin()" style="cursor: pointer;" (click)="logoutUser()">Log Out</a>
+
+            </ul>
+        </nav>
+    </header>
+</body>
+<!-- </html> -->
+
+
+
 <router-outlet></router-outlet>
+
+
 
 <!-- routerLink="/" routerLinkActive -->

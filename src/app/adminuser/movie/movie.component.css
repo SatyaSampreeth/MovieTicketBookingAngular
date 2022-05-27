@@ -2,7 +2,7 @@ form{
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin: 2%;
+    /* margin: 2%; */
     align-items: center;
 }
 

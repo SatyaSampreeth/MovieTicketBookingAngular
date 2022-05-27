@@ -19,10 +19,9 @@ export class MovieComponent implements OnInit {
   show:boolean=false
   result:any={}
 
-
-  // getAllMovies(){
-
-  // }
+    // url:any = 'http://localhost:9000';
+    // url:any="http://52.66.150.213:9000"
+    url:any="http://3.111.213.214:9000"
 
   addmovie() {
     console.log(this.movieForm.value)
@@ -32,7 +31,8 @@ export class MovieComponent implements OnInit {
       genre: this.movieForm.value.genre,
       img:this.movieForm.value.img
     };
-    return this.http.post("http://localhost:9000/movie/add",obj)
+    // return this.http.post("http://localhost:9000/movie/add",obj)
+    return this.http.post(this.url+"/movie/add",obj)
     .subscribe({
       next: (res) => {
         console.log(res)
@@ -48,7 +48,8 @@ export class MovieComponent implements OnInit {
 
 delete(value:any){
   console.log(value) 
-  return this.http.delete("http://localhost:9000/movie/"+ value)
+  // return this.http.delete("http://localhost:9000/movie/"+ value)
+  return this.http.delete(this.url+"/movie/"+ value)
   .subscribe({
     next: (res) => {
       console.log(res)
@@ -92,7 +93,8 @@ update(){
     genre: this.updateForm.value.genre || this.result.genre,
     img:this.updateForm.value.img || this.result.img
   };
-  return this.http.patch<any>("http://localhost:9000/movie/"+this.id,obj)
+  // return this.http.patch<any>("http://localhost:9000/movie/"+this.id,obj)
+  return this.http.patch<any>(this.url+"/movie/"+this.id,obj)
   .subscribe({
     next: (res) => {
       // for(let item of res){

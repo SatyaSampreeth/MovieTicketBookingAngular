@@ -1,37 +1,7 @@
 <!-- <p>show works!</p> -->
 <div >
 
-    <form class="form-inline" [formGroup]="showForm" (ngSubmit)="addshow()">
-      <h5 style="color: goldenrod; padding: 10px;">Add Shows</h5>
-          <div class="row">
-            <div class="col">
-                <input style="width: auto;" type="text" class="form-control mb-2 mr-sm-2" placeholder="Enter show time" formControlName="startAt">
-                <label for="movie">Movie:</label>  
-                <select id="movie" formControlName="movieId" class="form-control mb-2 mr-sm-2">  
-                    <option disabled>Select Movie Name</option>  
-                    <option >Choose Movie Name</option>  
-                    <option *ngFor="let loc of movieList" >{{loc}}</option>  
-                </select>
-            <input style="width: auto;" type="number" class="form-control mb-2 mr-sm-2" placeholder="Enter total rows" formControlName="row">
-            </div>
-            <div class="col">
-                <label for="location">Location:</label>  
-                <select id="location" formControlName="cityId" class="form-control mb-2 mr-sm-2" (change)="onChangeLocation()">  
-                    <option disabled>Select Location</option>  
-                    <option >Choose Location</option>  
-                    <option *ngFor="let loc of locationList" >{{loc}}</option>  
-                </select>
-                <label for="cinema">Cinema:</label>  
-                <select id="cinema" formControlName="cinemaId" class="form-control mb-2 mr-sm-2">  
-                    <option>Select Cinema Name</option>  
-                    <!-- <option>Choose Cinema Name</option>   -->
-                    <option *ngFor="let loc of cinemaList">{{loc}}</option>  
-                </select>
-                <input style="width: auto;" type="number" class="form-control mb-2 mr-sm-2" placeholder="Enter total columns" formControlName="col">
-            </div>
-          </div>          
-        <button style="margin-left: 1%;" type="submit" class="btn btn-primary mb-2" [disabled]="!showForm.valid">Add Show</button>
-      </form>
+
 
       
     
@@ -74,7 +44,7 @@
       </div>
 
 
-      <form class="form-inline" [formGroup]="updateForm" (ngSubmit)="update()" *ngIf="show==true" >
+      <form class="form-inline border border-white rounded container " style="padding: 2%;max-width: fit-content"  [formGroup]="updateForm" (ngSubmit)="update()" *ngIf="show==true" >
         <h5 style="color: goldenrod; padding: 10px;">Update Showtime Or Movie Playing</h5>
         <div class="row">
           <div class="col">
@@ -93,6 +63,38 @@
         </div>          
 
     </form>
+
+    <form class="form-inline border border-white rounded container " style="padding: 2%;max-width: fit-content"  [formGroup]="showForm" (ngSubmit)="addshow()">
+      <h5 style="color: goldenrod; padding: 10px;">Add Shows</h5>
+          <div class="row">
+            <div class="col">
+                <input style="width: auto;" type="text" class="form-control mb-2 mr-sm-2" placeholder="Enter show time" formControlName="startAt">
+                <label for="movie">Movie:</label>  
+                <select id="movie" formControlName="movieId" class="form-control mb-2 mr-sm-2">  
+                    <option disabled>Select Movie Name</option>  
+                    <option >Choose Movie Name</option>  
+                    <option *ngFor="let loc of movieList" >{{loc}}</option>  
+                </select>
+            <input style="width: auto;" type="number" class="form-control mb-2 mr-sm-2" placeholder="Enter total rows" formControlName="row">
+            </div>
+            <div class="col">
+                <label for="location">Location:</label>  
+                <select id="location" formControlName="cityId" class="form-control mb-2 mr-sm-2" (change)="onChangeLocation()">  
+                    <option disabled>Select Location</option>  
+                    <option >Choose Location</option>  
+                    <option *ngFor="let loc of locationList" >{{loc}}</option>  
+                </select>
+                <label for="cinema">Cinema:</label>  
+                <select id="cinema" formControlName="cinemaId" class="form-control mb-2 mr-sm-2">  
+                    <option>Select Cinema Name</option>  
+                    <!-- <option>Choose Cinema Name</option>   -->
+                    <option *ngFor="let loc of cinemaList">{{loc}}</option>  
+                </select>
+                <input style="width: auto;" type="number" class="form-control mb-2 mr-sm-2" placeholder="Enter total columns" formControlName="col">
+            </div>
+          </div>          
+        <button style="margin-left: 1%;" type="submit" class="btn btn-primary mb-2" [disabled]="!showForm.valid">Add Show</button>
+      </form>
 
 </div>
 
